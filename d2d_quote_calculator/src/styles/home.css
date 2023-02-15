@@ -1,0 +1,29 @@
+.logoImage {
+    width: 15em;
+}
+
+.banner {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 2px solid green;
+   
+    padding: 1em;
+}
+
+.banner p {
+    font-size: 1.2em;
+}
+
+
+
+.btn {
+    display: block !important;
+    margin-top: 1em !important;
+}
+
+
+a {
+    color: white !important;
+    text-decoration: none !important;
+}

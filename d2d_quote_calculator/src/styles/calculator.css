@@ -1,0 +1,56 @@
+
+h1 {
+    text-align: center;
+}
+
+
+
+.input-hidden {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  input[type=radio]:checked + label>img {
+    border: 1px solid #fff;
+    box-shadow: 0 0 3px 3px #090;
+  }
+  
+  /* Stuff after this is only to make things more pretty */
+  input[type=radio] + label>img {
+    width: 30em;
+    height: 20em;
+    transition: 500ms all;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+
+  .paintImage:hover {
+    cursor: pointer;
+    box-shadow: 0 0 3px 3px #090;
+  }
+  
+  input[type=radio]:checked + label>img {
+    transform: 
+      rotateZ(-5deg) 
+      rotateX(5deg);
+  }
+
+  .imageSelection {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 3em;
+  }
+
+  .imageDesc {
+    text-align: center;
+    padding-bottom: .5em;
+    margin: 0;
+    font-size: 1.5em;
+  }
+
+  .divider {
+    border-top: 5px solid #03C03C;
+    border-bottom: 5px solid blue;
+    width: 100%;
+    margin-top: .5em;
+  }
