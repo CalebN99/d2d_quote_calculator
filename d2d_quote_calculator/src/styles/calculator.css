@@ -17,8 +17,8 @@ h1 {
   
   /* Stuff after this is only to make things more pretty */
   input[type=radio] + label>img {
-    width: 30em;
-    height: 20em;
+    width: 25em;
+    height: 15em;
     transition: 500ms all;
     margin-right: 1em;
     margin-left: 1em;
