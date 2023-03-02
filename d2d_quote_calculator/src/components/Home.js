@@ -16,7 +16,9 @@ class Home extends Component {
     console.log("Home")
     return (
       <Provider store={store}>
-        <img className="logoImage" src={logo} alt="logo"></img>
+           <Link to="/">
+          <img className="logoImage" src={logo} alt="logo"></img>
+        </Link>
         <div className='banner'>
           <h1>Start your quote today!</h1>
           <p>Using our quote calculator you can have an interactive experience to get a base quote right away!</p>
