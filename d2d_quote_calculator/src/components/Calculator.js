@@ -7,7 +7,7 @@ import logo from "../assets/images/logo.webp";
 import { Link } from "react-router-dom";
 import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
-
+import $ from "jquery";
 class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,30 @@ class Calculator extends Component {
       vehicleSize: "",
       question: 1,
       error: "",
+      waterSpots: "",
+
     };
+  }
+
+  componentDidMount() {
+    console.log("mounted")
+    $(".image-checkbox").each(function () {
+      if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+        $(this).addClass('image-checkbox-checked');
+      }
+      else {
+        $(this).removeClass('image-checkbox-checked');
+      }
+    });
+    
+    // sync the state to the input
+    $(".image-checkbox").on("click", function (e) {
+      $(this).toggleClass('image-checkbox-checked');
+      var $checkbox = $(this).find('input[type="checkbox"]');
+      $checkbox.prop("checked",!$checkbox.prop("checked"))
+    
+      e.preventDefault();
+    });
   }
 
   handleRadioButton = (value) => {
@@ -25,19 +48,33 @@ class Calculator extends Component {
     });
   };
 
+  handle
+
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
-  }
-
-
+  };
 
   renderSwitch(param) {
     switch (param) {
       case 1:
-        return <CarSizeQ vehicleSize={this.state.vehicleSize} handleRadioButton={this.handleRadioButton} changeQuestion={this.changeQuestion} question={this.state.question}/>;
-        // return <this.getCarSizeQ />;
+        return (
+          <CarSizeQ
+            vehicleSize={this.state.vehicleSize}
+            handleRadioButton={this.handleRadioButton}
+            changeQuestion={this.changeQuestion}
+            question={this.state.question}
+          />
+        );
+      // return <this.getCarSizeQ />;
       case 2:
-        return <CarPaintQ vehicleSize={this.state.vehicleSize} handleRadioButton={this.handleRadioButton} changeQuestion={this.changeQuestion} question={this.state.question}/>;
+        return (
+          <CarPaintQ
+            vehicleSize={this.state.vehicleSize}
+            handleRadioButton={this.handleRadioButton}
+            changeQuestion={this.changeQuestion}
+            question={this.state.question}
+          />
+        );
       default:
         return "hello";
     }
@@ -49,7 +86,7 @@ class Calculator extends Component {
         <Link to="/">
           <img className="logoImage" src={logo} alt="logo"></img>
         </Link>
-   
+
         {this.renderSwitch(this.state.question)}
         {this.state.vehicleSize}
       </Provider>

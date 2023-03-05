@@ -12,7 +12,7 @@ h1 {
   
   input[type=radio]:checked + label>img {
     border: 1px solid #fff;
-    box-shadow: 0 0 3px 3px #090;
+    box-shadow: 0 0 1px 1px #090;
   }
   
   /* Stuff after this is only to make things more pretty */
@@ -26,15 +26,9 @@ h1 {
 
   .paintImage:hover {
     cursor: pointer;
-    box-shadow: 0 0 3px 3px #090;
+    box-shadow: 0 0 1px 1px #090;
   }
-  
-  input[type=radio]:checked + label>img {
-    transform: 
-      rotateZ(-5deg) 
-      rotateX(5deg);
-  }
-
+ 
   .imageSelection {
     width: fit-content;
     margin: 0 auto;
@@ -53,4 +47,64 @@ h1 {
     border-bottom: 5px solid blue;
     width: 100%;
     margin-top: .5em;
+  }
+
+  ul {
+    list-style-type: none;
+    border: 1px solid blue;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  
+  li {
+    display: inline-block;
+  }
+  
+  input[type="checkbox"][id^="cb"] {
+    display: none;
+  }
+  
+  label {
+    padding: .5em;
+    display: block;
+    position: relative;
+    margin: .5em;
+    cursor: pointer;
+  }
+  
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+  
+  label img {
+    height: 20em;
+    width: 35em;
+
+  }
+  
+
+  
+  :checked + label:before {
+    content: "✓";
+    background-color: #03C03C;
+    transform: scale(1);
+  }
+  
+  :checked + label img {
+    /* transform: scale(0.9); */
+    box-shadow: 0 0 5px green;
+    z-index: -1;
   }
