@@ -30,9 +30,14 @@ h1 {
   }
  
   .imageSelection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     width: fit-content;
     margin: 0 auto;
     margin-top: 3em;
+    border: 1px solid blue;
   }
 
   .imageDesc {
@@ -49,20 +54,7 @@ h1 {
     margin-top: .5em;
   }
 
-  ul {
-    list-style-type: none;
-    border: 1px solid blue;
-    width: fit-content;
-    margin: 0 auto;
-  }
-  
-  li {
-    display: inline-block;
-  }
-  
-  input[type="checkbox"][id^="cb"] {
-    display: none;
-  }
+
   
   label {
     padding: .5em;
@@ -79,8 +71,8 @@ h1 {
     display: block;
     border-radius: 50%;
     position: absolute;
-    top: -5px;
-    left: -5px;
+    top: 20px;
+    left: 10px;
     width: 25px;
     height: 25px;
     text-align: center;
@@ -90,8 +82,15 @@ h1 {
   }
   
   label img {
-    height: 20em;
-    width: 35em;
+    flex: 1 0 21%;
+
+    max-width: 33em;
+    max-height: 18em;
+    /* min-width: 25em;
+    min-height: 17em; */
+    width: auto;
+    height: auto;
+    
 
   }
   

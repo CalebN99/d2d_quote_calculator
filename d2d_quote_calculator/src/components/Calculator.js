@@ -7,39 +7,24 @@ import logo from "../assets/images/logo.webp";
 import { Link } from "react-router-dom";
 import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
-import $ from "jquery";
+import CarProtectionQ from "./questions/CarProtectionQ";
 class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      paint: "",
       vehicleSize: "",
       question: 1,
       error: "",
-      waterSpots: "",
-
+      waterSpots: false,
+      swirls: false,
+      scratches: false,
+      perfPaint: false,
+      wheels: false,
+      windshield: false,
+      allWindows: false,
+      paint: false,
+      trimLights: false,
     };
-  }
-
-  componentDidMount() {
-    console.log("mounted")
-    $(".image-checkbox").each(function () {
-      if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-        $(this).addClass('image-checkbox-checked');
-      }
-      else {
-        $(this).removeClass('image-checkbox-checked');
-      }
-    });
-    
-    // sync the state to the input
-    $(".image-checkbox").on("click", function (e) {
-      $(this).toggleClass('image-checkbox-checked');
-      var $checkbox = $(this).find('input[type="checkbox"]');
-      $checkbox.prop("checked",!$checkbox.prop("checked"))
-    
-      e.preventDefault();
-    });
   }
 
   handleRadioButton = (value) => {
@@ -48,7 +33,13 @@ class Calculator extends Component {
     });
   };
 
-  handle
+  handleChange = () => (event) => {
+    console.log(event.target.checked);
+    console.log(event.target.name);
+    this.setState({
+      [event.target.name]: event.target.checked,
+    });
+  };
 
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
@@ -70,9 +61,19 @@ class Calculator extends Component {
         return (
           <CarPaintQ
             vehicleSize={this.state.vehicleSize}
-            handleRadioButton={this.handleRadioButton}
             changeQuestion={this.changeQuestion}
+            handleChange={this.handleChange}
             question={this.state.question}
+            state={this.state}
+          />
+        );
+      case 3:
+        return (
+          <CarProtectionQ
+            changeQuestion={this.changeQuestion}
+            handleChange={this.handleChange}
+            question={this.state.question}
+            state={this.state}
           />
         );
       default:
@@ -89,6 +90,7 @@ class Calculator extends Component {
 
         {this.renderSwitch(this.state.question)}
         {this.state.vehicleSize}
+        {this.state.waterSpots + ""}
       </Provider>
     );
   }

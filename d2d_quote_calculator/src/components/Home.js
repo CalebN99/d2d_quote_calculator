@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import '../styles/home.css';
+import React, { Component } from "react";
+import "../styles/home.css";
 import { Provider, connect } from "react-redux";
 import { getQuotes } from "../actions/itemAction";
 import store from "../store";
@@ -9,37 +9,39 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   render() {
-    console.log("Home")
     return (
       <Provider store={store}>
-           <Link to="/">
+        <Link to="/">
           <img className="logoImage" src={logo} alt="logo"></img>
         </Link>
-        <div className='banner'>
+        <div className="banner">
           <h1>Start your quote today!</h1>
-          <p>Using our quote calculator you can have an interactive experience to get a base quote right away!</p>
+          <p>
+            Using our quote calculator you can have an interactive experience to
+            get a base quote right away!
+          </p>
+          <p>{this.props.state.car}</p>
         </div>
-    
-   
-      <button type="button" class="btn btn-primary mx-auto"> <Link to="/quote">Start Quote</Link></button>
-        
-        <button type="button" class="btn btn-success mx-auto"><Link to="https://thedreamyway.com/">Main Website</Link></button>
-  
-     
-     
-       
+
+        <button type="button" class="btn btn-primary mx-auto">
+          {" "}
+          <Link to="/quote">Start Quote</Link>
+        </button>
+
+        <button type="button" class="btn btn-success mx-auto">
+          <Link to="https://thedreamyway.com/">Main Website</Link>
+        </button>
       </Provider>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({
-    quotes: state.quotes
-  });
-  
-  export default connect(mapStateToProps, { getQuotes })(Home);
-  
+const mapStateToProps = (state) => ({
+  state: state.state
+});
+
+export default connect(mapStateToProps, { getQuotes })(Home);
