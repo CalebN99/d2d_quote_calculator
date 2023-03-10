@@ -1,8 +1,3 @@
-import smartCar from "../../assets/images/smartcar.png";
-import porsche from "../../assets/images/Porsche.png";
-import tesla from "../../assets/images/tesla.png";
-import truck from "../../assets/images/truck.png";
-import van from "../../assets/images/van.png";
 import medium from "../../assets/images/medium.jpg";
 
 function CarProtectionQ(props) {

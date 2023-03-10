@@ -56,7 +56,6 @@ class Calculator extends Component {
             question={this.state.question}
           />
         );
-      // return <this.getCarSizeQ />;
       case 2:
         return (
           <CarPaintQ

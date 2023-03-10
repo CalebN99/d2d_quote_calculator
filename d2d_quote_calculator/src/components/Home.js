@@ -24,7 +24,6 @@ class Home extends Component {
             Using our quote calculator you can have an interactive experience to
             get a base quote right away!
           </p>
-          <p>{this.props.state.car}</p>
         </div>
 
         <button type="button" class="btn btn-primary mx-auto">

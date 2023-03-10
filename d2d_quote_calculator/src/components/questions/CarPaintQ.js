@@ -6,7 +6,7 @@ function CarPaintQ(props) {
   return (
     <div>
       <h1>
-        Select all conditions present that you would like fxied before coating
+        Select all conditions present that you would like fixed before coating
       </h1>
 
       <div className="imageSelection">
