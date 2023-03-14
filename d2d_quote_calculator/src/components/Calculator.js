@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
 import CarProtectionQ from "./questions/CarProtectionQ";
+import Modal from "./Modal";
 class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,7 @@ class Calculator extends Component {
       allWindows: false,
       paint: false,
       trimLights: false,
+      modal: false,
     };
   }
 
@@ -32,6 +34,10 @@ class Calculator extends Component {
       vehicleSize: value,
     });
   };
+
+ openModal = () => {
+  this.setState({modal: true})
+ }
 
   handleChange = () => (event) => {
     console.log(event.target.checked);
@@ -54,6 +60,7 @@ class Calculator extends Component {
             handleRadioButton={this.handleRadioButton}
             changeQuestion={this.changeQuestion}
             question={this.state.question}
+            state={this.state}
           />
         );
       case 2:
@@ -73,6 +80,7 @@ class Calculator extends Component {
             handleChange={this.handleChange}
             question={this.state.question}
             state={this.state}
+            openModal={this.openModal}
           />
         );
       default:
@@ -88,8 +96,8 @@ class Calculator extends Component {
         </Link>
 
         {this.renderSwitch(this.state.question)}
-        {this.state.vehicleSize}
-        {this.state.waterSpots + ""}
+        {this.state.scratches + " "}
+        <Modal show={this.state.modal} />
       </Provider>
     );
   }

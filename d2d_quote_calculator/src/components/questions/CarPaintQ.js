@@ -33,6 +33,7 @@ function CarPaintQ(props) {
           id="swirls"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.swirls}
         />
         <label for="swirls">
           <p className="imageDesc">Swirls</p>
@@ -49,6 +50,7 @@ function CarPaintQ(props) {
           id="scratches"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.scratches}
         />
         <label for="scratches">
           <p className="imageDesc">Scratches</p>
@@ -65,6 +67,7 @@ function CarPaintQ(props) {
           id="perfPaint"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.perfPaint}
         />
         <label for="perfPaint">
           <p className="imageDesc">Nothing, my paint is Perfect!</p>

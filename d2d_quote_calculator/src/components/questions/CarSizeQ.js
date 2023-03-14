@@ -15,6 +15,7 @@ function CarSizeQ(props) {
           id="smartCar"
           className="input-hidden"
           onChange={() => props.handleRadioButton("smartCar")}
+          checked={props.state.vehicleSize === "smartCar"}
         />
         <label for="smartCar">
           <p className="imageDesc">Smart car</p>
@@ -27,6 +28,7 @@ function CarSizeQ(props) {
           id="porsche"
           className="input-hidden"
           onChange={() => props.handleRadioButton("porsche")}
+          checked={props.state.vehicleSize === "porsche"}
         />
         <label for="porsche">
           <p className="imageDesc">2 Door Porsche</p>
@@ -39,6 +41,7 @@ function CarSizeQ(props) {
           id="tesla"
           className="input-hidden"
           onChange={() => props.handleRadioButton("tesla")}
+          checked={props.state.vehicleSize === "tesla"}
         />
         <label for="tesla">
           <p className="imageDesc">Tesla</p>
@@ -48,9 +51,23 @@ function CarSizeQ(props) {
         <input
           type="radio"
           name="paint"
+          id="suv"
+          className="input-hidden"
+          onChange={() => props.handleRadioButton("suv")}
+          checked={props.state.vehicleSize === "suv"}
+        />
+        <label for="suv">
+          <p className="imageDesc">SUV</p>
+          <img src={truck} alt="High paint defect" className="paintImage" />
+        </label>
+
+        <input
+          type="radio"
+          name="paint"
           id="truck"
           className="input-hidden"
           onChange={() => props.handleRadioButton("truck")}
+          checked={props.state.vehicleSize === "truck"}
         />
         <label for="truck">
           <p className="imageDesc">4 Door Truck</p>
@@ -63,11 +80,13 @@ function CarSizeQ(props) {
           id="van"
           className="input-hidden"
           onChange={() => props.handleRadioButton("passengerVan")}
+          checked={props.state.vehicleSize === "passengerVan"}
         />
         <label for="van">
           <p className="imageDesc">Passenger Van</p>
           <img src={van} alt="High paint defect" className="paintImage" />
         </label>
+
         <div className="divider"></div>
       </div>
 

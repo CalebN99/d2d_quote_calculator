@@ -11,6 +11,7 @@ function CarProtectionQ(props) {
           id="wheels"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.wheels}
         />
         <label for="wheels">
           <p className="imageDesc">Wheels</p>
@@ -23,6 +24,7 @@ function CarProtectionQ(props) {
           id="windshield"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.windshield}
         />
         <label for="windshield">
           <p className="imageDesc">Windshield</p>
@@ -35,6 +37,7 @@ function CarProtectionQ(props) {
           id="allWindows"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.allWindows}
         />
         <label for="allWindows">
           <p className="imageDesc">All Windows</p>
@@ -46,7 +49,8 @@ function CarProtectionQ(props) {
           name="paint"
           id="paint"
           className="input-hidden"
-          onChange={() => props.handleRadioButton("truck")}
+          onChange={props.handleChange()}
+          checked={props.state.paint}
         />
         <label for="paint">
           <p className="imageDesc">Paint</p>
@@ -59,6 +63,7 @@ function CarProtectionQ(props) {
           id="trimLights"
           className="input-hidden"
           onChange={props.handleChange()}
+          checked={props.state.trimLights}
         />
         <label for="trimLights">
           <p className="imageDesc">Trim & Lights</p>
@@ -71,7 +76,7 @@ function CarProtectionQ(props) {
         type="button"
         className="btn btn-primary mx-auto"
         onClick={() => {
-          props.changeQuestion(1, props.question);
+          props.openModal()
         }}
       >
         Submit
