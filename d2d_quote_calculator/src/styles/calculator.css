@@ -10,13 +10,13 @@ h1 {
     left: -9999px;
   }
   
-  input[type=radio]:checked + label>img {
+  input[type=radio]:checked + .aLabel>img {
     border: 1px solid #fff;
     box-shadow: 0 0 1px 1px #090;
   }
   
   /* Stuff after this is only to make things more pretty */
-  input[type=radio] + label>img {
+  input[type=radio] + .aLabel>img {
     width: 25em;
     height: 15em;
     transition: 500ms all;
@@ -55,7 +55,7 @@ h1 {
 
 
   
-  label {
+  .aLabel {
     padding: .5em;
     display: block;
     position: relative;
@@ -63,7 +63,7 @@ h1 {
     cursor: pointer;
   }
   
-  label:before {
+  .aLabel:before {
     background-color: white;
     color: white;
     content: " ";
@@ -80,7 +80,7 @@ h1 {
     transform: scale(0);
   }
   
-  label img {
+  .aLabel img {
     flex: 1 0 21%;
 
     max-width: 33em;
@@ -95,14 +95,19 @@ h1 {
   
 
   
-  :checked + label:before {
+  .paintSelect:checked + .aLabel:before {
     content: "✓";
     background-color: #03C03C;
     transform: scale(1);
   }
   
-  :checked + label img {
+  :checked + .aLabel img {
     /* transform: scale(0.9); */
     box-shadow: 0 0 5px green;
     z-index: -1;
   }
+
+  #gridCheck {
+
+  }
+

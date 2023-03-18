@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
 import CarProtectionQ from "./questions/CarProtectionQ";
-import Modal from "./Modal";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -35,9 +36,13 @@ class Calculator extends Component {
     });
   };
 
- openModal = () => {
-  this.setState({modal: true})
- }
+  openModal = () => {
+    this.setState({ modal: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modal: false });
+  };
 
   handleChange = () => (event) => {
     console.log(event.target.checked);
@@ -97,7 +102,62 @@ class Calculator extends Component {
 
         {this.renderSwitch(this.state.question)}
         {this.state.scratches + " "}
-        <Modal show={this.state.modal} />
+
+        <Modal
+          show={this.state.modal}
+          onHide={this.closeModal}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Submit to get your quote now!
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="jonathan@dirty2dreamy.com..."
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="gridCheck"
+                  />
+                  <label class="form-check-label" for="gridCheck">
+                    Would you like to signup for our emailing list?
+                  </label>
+                </div>
+              </div>
+              <button class="btn btn-primary">
+                Get Quote
+              </button>
+            </form>
+          </Modal.Body>
+          {/* <Modal.Footer>
+            <Button variant="secondary" onClick={this.closeModal}>
+              Submit
+            </Button>
+          </Modal.Footer> */}
+        </Modal>
       </Provider>
     );
   }

@@ -14,11 +14,11 @@ function CarPaintQ(props) {
           type="checkbox"
           name="waterSpots"
           id="waterSpots"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.waterSpots}
         />
-        <label for="waterSpots">
+        <label for="waterSpots" className="aLabel">
           <p className="imageDesc">Water Spots</p>
           <img
             src={low}
@@ -31,11 +31,11 @@ function CarPaintQ(props) {
           type="checkbox"
           name="swirls"
           id="swirls"
-          className="input-hidden"
+          className="paintSelect  input-hidden"
           onChange={props.handleChange()}
           checked={props.state.swirls}
         />
-        <label for="swirls">
+        <label for="swirls" className="aLabel">
           <p className="imageDesc">Swirls</p>
           <img
             src={medium}
@@ -48,11 +48,11 @@ function CarPaintQ(props) {
           type="checkbox"
           name="scratches"
           id="scratches"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.scratches}
         />
-        <label for="scratches">
+        <label for="scratches" className="aLabel">
           <p className="imageDesc">Scratches</p>
           <img
             src={medium}
@@ -65,11 +65,11 @@ function CarPaintQ(props) {
           type="checkbox"
           name="perfPaint"
           id="perfPaint"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.perfPaint}
         />
-        <label for="perfPaint">
+        <label for="perfPaint" className="aLabel">
           <p className="imageDesc">Nothing, my paint is Perfect!</p>
           <img
             src={medium}

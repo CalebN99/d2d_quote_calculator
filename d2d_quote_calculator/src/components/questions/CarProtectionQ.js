@@ -9,11 +9,11 @@ function CarProtectionQ(props) {
           type="checkbox"
           name="wheels"
           id="wheels"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.wheels}
         />
-        <label for="wheels">
+        <label for="wheels" className="aLabel">
           <p className="imageDesc">Wheels</p>
           <img src={medium} alt="Car Wheel" className="paintImage" />
         </label>
@@ -22,11 +22,11 @@ function CarProtectionQ(props) {
           type="checkbox"
           name="windshield"
           id="windshield"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.windshield}
         />
-        <label for="windshield">
+        <label for="windshield" className="aLabel">
           <p className="imageDesc">Windshield</p>
           <img src={medium} alt="Car windshield" className="paintImage" />
         </label>
@@ -35,11 +35,11 @@ function CarProtectionQ(props) {
           type="checkbox"
           name="allWindows"
           id="allWindows"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.allWindows}
         />
-        <label for="allWindows">
+        <label for="allWindows" className="aLabel">
           <p className="imageDesc">All Windows</p>
           <img src={medium} alt="Car Windows" className="paintImage" />
         </label>
@@ -48,11 +48,11 @@ function CarProtectionQ(props) {
           type="checkbox"
           name="paint"
           id="paint"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.paint}
         />
-        <label for="paint">
+        <label for="paint" className="aLabel">
           <p className="imageDesc">Paint</p>
           <img src={medium} alt="Car paint" className="paintImage" />
         </label>
@@ -61,11 +61,11 @@ function CarProtectionQ(props) {
           type="checkbox"
           name="trimLights"
           id="trimLights"
-          className="input-hidden"
+          className="paintSelect input-hidden"
           onChange={props.handleChange()}
           checked={props.state.trimLights}
         />
-        <label for="trimLights">
+        <label for="trimLights" className="aLabel">
           <p className="imageDesc">Trim & Lights</p>
           <img src={medium} alt="Car Trim & Lights" className="paintImage" />
         </label>
@@ -76,7 +76,7 @@ function CarProtectionQ(props) {
         type="button"
         className="btn btn-primary mx-auto"
         onClick={() => {
-          props.openModal()
+          props.openModal(true)
         }}
       >
         Submit
