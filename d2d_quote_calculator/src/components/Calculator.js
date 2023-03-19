@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
 import CarProtectionQ from "./questions/CarProtectionQ";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 class Calculator extends Component {
   constructor(props) {
