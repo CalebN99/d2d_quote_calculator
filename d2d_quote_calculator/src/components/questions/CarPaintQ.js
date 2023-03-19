@@ -1,6 +1,7 @@
-import low from "../../assets/images/low.png";
-import medium from "../../assets/images/medium.jpg";
-import high from "../../assets/images/high.webp";
+import waterspots from "../../assets/images/waterspots.jpg";
+import swirls from "../../assets/images/swirls.png";
+import scratches from "../../assets/images/scratches.jpg";
+import perfPaint from "../../assets/images/camaro.jpg";
 
 function CarPaintQ(props) {
   return (
@@ -21,7 +22,7 @@ function CarPaintQ(props) {
         <label for="waterSpots" className="aLabel">
           <p className="imageDesc">Water Spots</p>
           <img
-            src={low}
+            src={waterspots}
             alt="Water Spot defect in car paint"
             className="paintImage"
           />
@@ -38,7 +39,7 @@ function CarPaintQ(props) {
         <label for="swirls" className="aLabel">
           <p className="imageDesc">Swirls</p>
           <img
-            src={medium}
+            src={swirls}
             alt="Swirl defect in car paint"
             className="paintImage"
           />
@@ -55,7 +56,7 @@ function CarPaintQ(props) {
         <label for="scratches" className="aLabel">
           <p className="imageDesc">Scratches</p>
           <img
-            src={medium}
+            src={scratches}
             alt="Scratch defect in car paint"
             className="paintImage"
           />
@@ -72,8 +73,8 @@ function CarPaintQ(props) {
         <label for="perfPaint" className="aLabel">
           <p className="imageDesc">Nothing, my paint is Perfect!</p>
           <img
-            src={medium}
-            alt="Scratch defect in car paint"
+            src={perfPaint}
+            alt="Mclaren car, perfect paint!"
             className="paintImage"
           />
         </label>
@@ -81,26 +82,34 @@ function CarPaintQ(props) {
         <div className="divider"></div>
       </div>
 
+      <div className="btn-toolbar">
       <button
-        disabled={!props.state.waterSpots && !props.state.swirls && !props.state.scratches && !props.state.perfPaint}
-        type="button"
-        className="btn btn-primary mx-auto"
-        onClick={() => {
-          props.changeQuestion(1, props.question);
-        }}
-      >
-        Next
-      </button>
+          type="button"
+          className="btn btn-primary mx-auto"
+          onClick={() => {
+            props.changeQuestion(-1, props.question);
+          }}
+        >
+          Back
+        </button>
+        <button
+          disabled={
+            !props.state.waterSpots &&
+            !props.state.swirls &&
+            !props.state.scratches &&
+            !props.state.perfPaint
+          }
+          type="button"
+          className="btn btn-primary mx-auto"
+          onClick={() => {
+            props.changeQuestion(1, props.question);
+          }}
+        >
+          Next
+        </button>
 
-      <button
-        type="button"
-        className="btn btn-primary mx-auto"
-        onClick={() => {
-          props.changeQuestion(-1, props.question);
-        }}
-      >
-        Back
-      </button>
+    
+      </div>
     </div>
   );
 }

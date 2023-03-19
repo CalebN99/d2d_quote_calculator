@@ -83,8 +83,8 @@ h1 {
   .aLabel img {
     flex: 1 0 21%;
 
-    max-width: 33em;
-    max-height: 18em;
+    max-width: 30em;
+    max-height: 16em;
     /* min-width: 25em;
     min-height: 17em; */
     width: auto;
@@ -107,7 +107,15 @@ h1 {
     z-index: -1;
   }
 
-  #gridCheck {
-
+  .btn-toolbar {
+    width: auto !important;
+    max-width: 10em;
+    margin: 0 auto;
   }
+
+  .form-group {
+    margin-bottom: 1.5em !important;
+  }
+
+
 

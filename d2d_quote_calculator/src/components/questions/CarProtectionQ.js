@@ -72,24 +72,27 @@ function CarProtectionQ(props) {
         <div className="divider"></div>
       </div>
 
+      <div className="btn-toolbar">
       <button
-        type="button"
-        className="btn btn-primary mx-auto"
-        onClick={() => {
-          props.openModal(true)
-        }}
-      >
-        Submit
-      </button>
-      <button
-        type="button"
-        className="btn btn-primary mx-auto"
-        onClick={() => {
-          props.changeQuestion(-1, props.question);
-        }}
-      >
-        Back
-      </button>
+          type="button"
+          className="btn btn-primary mx-auto"
+          onClick={() => {
+            props.changeQuestion(-1, props.question);
+          }}
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary mx-auto"
+          onClick={() => {
+            props.openModal(true);
+          }}
+        >
+          Submit
+        </button>
+   
+      </div>
     </div>
   );
 }

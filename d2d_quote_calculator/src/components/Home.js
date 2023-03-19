@@ -32,7 +32,7 @@ class Home extends Component {
         </button>
 
         <button type="button" class="btn btn-success mx-auto">
-          <Link to="https://thedreamyway.com/">Main Website</Link>
+          <a href="https://thedreamyway.com/" target="_blank" rel="noreferrer">Main Website</a>
         </button>
       </Provider>
     );
