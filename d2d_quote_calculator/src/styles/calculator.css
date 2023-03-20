@@ -117,5 +117,29 @@ h1 {
     margin-bottom: 1.5em !important;
   }
 
+  .footer {
+    width: 100%;
+    display: block;
+    height: 6em;
+  
+  }
+
+  .load {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .footer h3 {
+    text-align: center;
+  }
+
+  h3 span {
+    color: #03C03C;
+  }
+
+  form {
+    transition: all ease-out 3s;
+  }
+
 
 

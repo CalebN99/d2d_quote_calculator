@@ -14,33 +14,43 @@ class Home extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Link to="/">
-          <img className="logoImage" src={logo} alt="logo"></img>
-        </Link>
-        <div className="banner">
-          <h1>Start your quote today!</h1>
-          <p>
-            Using our quote calculator you can have an interactive experience to
-            get a base quote right away!
-          </p>
+      <Provider className="provider" store={store}>
+        <div className="home">
+          <div className="homeContainer">
+            <Link to="/">
+              <img className="logoImage" src={logo} alt="logo"></img>
+            </Link>
+            <div className="banner">
+              <h1>Start your quote today!</h1>
+              <p>
+                Using our quote calculator you can have an interactive
+                experience to get a base quote right away!
+              </p>
+            </div>
+
+            <button type="button" class="btn btn-primary mx-auto">
+              {" "}
+              <Link to="/quote">Start Quote</Link>
+            </button>
+
+            <button type="button" class="btn btn-success mx-auto">
+              <a
+                href="https://thedreamyway.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Main Website
+              </a>
+            </button>
+          </div>
         </div>
-
-        <button type="button" class="btn btn-primary mx-auto">
-          {" "}
-          <Link to="/quote">Start Quote</Link>
-        </button>
-
-        <button type="button" class="btn btn-success mx-auto">
-          <a href="https://thedreamyway.com/" target="_blank" rel="noreferrer">Main Website</a>
-        </button>
       </Provider>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  state: state.state
+  state: state.state,
 });
 
 export default connect(mapStateToProps, { getQuotes })(Home);

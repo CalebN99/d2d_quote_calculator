@@ -1,3 +1,15 @@
+.home {
+    background-color: black;
+    height: 100vh;
+}
+
+.homeContainer {
+    background-color: white;
+    height: 100%;
+    width: 75vw !important;
+    margin: 0 auto;
+}
+
 .logoImage {
     width: 15em;
 }

@@ -9,6 +9,7 @@ import CarSizeQ from "./questions/CarSizeQ";
 import CarPaintQ from "./questions/CarPaintQ";
 import CarProtectionQ from "./questions/CarProtectionQ";
 import Modal from "react-bootstrap/Modal";
+import ReactLoading from "react-loading";
 class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,8 @@ class Calculator extends Component {
       paint: false,
       trimLights: false,
       modal: false,
+      loadQuote: false,
+      quote: false,
     };
   }
 
@@ -33,6 +36,15 @@ class Calculator extends Component {
     this.setState({
       vehicleSize: value,
     });
+  };
+
+  loadQuote = () => {
+    this.setState({ loadQuote: true });
+
+    setTimeout(() => {
+      this.setState({ loadQuote: false });
+      this.setState({ quote: 1150 });
+    }, 1300);
   };
 
   openModal = () => {
@@ -100,8 +112,6 @@ class Calculator extends Component {
         </Link>
 
         {this.renderSwitch(this.state.question)}
-        {this.state.scratches + " "}
-
         <Modal
           show={this.state.modal}
           onHide={this.closeModal}
@@ -109,53 +119,75 @@ class Calculator extends Component {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>
-              Submit to get your quote now!
-            </Modal.Title>
+            <Modal.Title>Submit to get your quote now!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="jonathan@dirty2dreamy.com..."
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="gridCheck"
-                  />
-                  <label class="form-check-label" for="gridCheck">
-                    Would you like to signup for our emailing list?
-                  </label>
+              <fieldset disabled={this.state.quote}>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" required />
                 </div>
-              </div>
-              <button class="btn btn-primary">
-                Get Quote
-              </button>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="jonathan@dirty2dreamy.com..."
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="gridCheck"
+                    />
+                    <label class="form-check-label" for="gridCheck">
+                      Would you like to signup for our emailing list?
+                    </label>
+                  </div>
+                </div>
+                <button
+                  onClick={this.loadQuote}
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Get Quote
+                </button>
+              </fieldset>
             </form>
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Button variant="secondary" onClick={this.closeModal}>
-              Submit
-            </Button>
-          </Modal.Footer> */}
+          <Modal.Footer>
+            <div className="footer">
+              {this.state.loadQuote ? (
+                <ReactLoading className="load" type={"spin"} color={"blue"} />
+              ) : (
+                " "
+              )}
+              {this.state.quote ? (
+                <div>
+                  <h3>
+                    <span>Estimate: </span>
+                    {"$" + this.state.quote}
+                  </h3>
+                  <button type="button" class="btn btn-primary mx-auto">
+                    <a
+                      href="https://www.facebook.com/Dirty2Dreamy"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Contact Us! - Facebook
+                    </a>
+                  </button>
+                </div>
+              ) : (
+                " "
+              )}
+            </div>
+          </Modal.Footer>
         </Modal>
       </Provider>
     );
