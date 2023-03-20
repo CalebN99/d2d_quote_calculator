@@ -1,4 +1,13 @@
-import medium from "../../assets/images/medium.jpg";
+
+import wheel from "../../assets/images/wheels.png";
+import windshield from "../../assets/images/windshield.jpg";
+import paint from "../../assets/images/paint.jpg";
+import headlights from "../../assets/images/headlights.jpg";
+import allWindows from "../../assets/images/allWindows.jpg";
+
+
+
+
 
 function CarProtectionQ(props) {
   return (
@@ -15,7 +24,7 @@ function CarProtectionQ(props) {
         />
         <label for="wheels" className="aLabel">
           <p className="imageDesc">Wheels</p>
-          <img src={medium} alt="Car Wheel" className="paintImage" />
+          <img src={wheel} alt="Car Wheel" className="paintImage" />
         </label>
 
         <input
@@ -28,7 +37,7 @@ function CarProtectionQ(props) {
         />
         <label for="windshield" className="aLabel">
           <p className="imageDesc">Windshield</p>
-          <img src={medium} alt="Car windshield" className="paintImage" />
+          <img src={windshield} alt="Car windshield" className="paintImage" />
         </label>
 
         <input
@@ -41,7 +50,7 @@ function CarProtectionQ(props) {
         />
         <label for="allWindows" className="aLabel">
           <p className="imageDesc">All Windows</p>
-          <img src={medium} alt="Car Windows" className="paintImage" />
+          <img src={allWindows} alt="Car Windows" className="paintImage" />
         </label>
 
         <input
@@ -54,7 +63,7 @@ function CarProtectionQ(props) {
         />
         <label for="paint" className="aLabel">
           <p className="imageDesc">Paint</p>
-          <img src={medium} alt="Car paint" className="paintImage" />
+          <img src={paint} alt="Car paint" className="paintImage" />
         </label>
 
         <input
@@ -67,7 +76,7 @@ function CarProtectionQ(props) {
         />
         <label for="trimLights" className="aLabel">
           <p className="imageDesc">Trim & Lights</p>
-          <img src={medium} alt="Car Trim & Lights" className="paintImage" />
+          <img src={headlights} alt="Car Trim & Lights" className="paintImage" />
         </label>
         <div className="divider"></div>
       </div>

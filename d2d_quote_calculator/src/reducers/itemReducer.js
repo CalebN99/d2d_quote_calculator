@@ -7,6 +7,7 @@ import {
 const initialState = {
   quotes: [],
   car: "Subaru",
+  quote: 1650,
   auth: (a = initialState) => {
     if (a.user.user.length > 0) {
       return {

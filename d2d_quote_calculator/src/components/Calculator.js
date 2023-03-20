@@ -43,7 +43,7 @@ class Calculator extends Component {
 
     setTimeout(() => {
       this.setState({ loadQuote: false });
-      this.setState({ quote: 1150 });
+      this.setState({ quote: 1650 });
     }, 1300);
   };
 
@@ -66,6 +66,10 @@ class Calculator extends Component {
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
   };
+
+  componentDidMount() {
+    console.log("store: " + this.props.quotes.quote)
+  }
 
   renderSwitch(param) {
     switch (param) {
@@ -171,7 +175,7 @@ class Calculator extends Component {
                 <div>
                   <h3>
                     <span>Estimate: </span>
-                    {"$" + this.state.quote}
+                    {"$" + this.props.quotes.quote}
                   </h3>
                   <button type="button" class="btn btn-primary mx-auto">
                     <a
@@ -195,7 +199,7 @@ class Calculator extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  quotes: state.quotes,
+  quotes: state.state
 });
 
 export default connect(mapStateToProps, { getQuotes })(Calculator);
