@@ -3,6 +3,9 @@ import porsche from "../../assets/images/Porsche.png";
 import tesla from "../../assets/images/tesla.png";
 import truck from "../../assets/images/truck.png";
 import van from "../../assets/images/van.png";
+import suv from "../../assets/images/suv.png";
+
+
 
 function CarSizeQ(props) {
   return (
@@ -58,7 +61,7 @@ function CarSizeQ(props) {
         />
         <label for="suv" className="aLabel">
           <p className="imageDesc">SUV</p>
-          <img src={truck} alt="High paint defect" className="paintImage" />
+          <img src={suv} alt="High paint defect" className="paintImage" />
         </label>
 
         <input
