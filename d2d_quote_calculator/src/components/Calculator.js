@@ -21,14 +21,10 @@ class Calculator extends Component {
       swirls: false,
       scratches: false,
       perfPaint: false,
-      wheels: false,
-      windshield: false,
-      allWindows: false,
-      paint: false,
-      trimLights: false,
       modal: false,
       loadQuote: false,
       quote: false,
+      protection: []
     };
   }
 
@@ -51,6 +47,14 @@ class Calculator extends Component {
     this.setState({ modal: true });
   };
 
+  updateProtList = (value) => (event) => {
+    if (event.target.checked) {
+      this.setState({protection: this.state.protection.concat([value])})
+    } else {
+      this.setState({protection: this.state.protection.filter(function(val) {return val !== value})})
+    }
+  }
+
   closeModal = () => {
     this.setState({ modal: false });
   };
@@ -66,10 +70,6 @@ class Calculator extends Component {
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
   };
-
-  componentDidMount() {
-    console.log("store: " + this.props.quotes.quote)
-  }
 
   renderSwitch(param) {
     switch (param) {
@@ -101,6 +101,7 @@ class Calculator extends Component {
             question={this.state.question}
             state={this.state}
             openModal={this.openModal}
+            updateProtList={this.updateProtList}
           />
         );
       default:

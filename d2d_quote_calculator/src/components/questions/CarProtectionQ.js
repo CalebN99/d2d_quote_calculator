@@ -19,8 +19,8 @@ function CarProtectionQ(props) {
           name="wheels"
           id="wheels"
           className="paintSelect input-hidden"
-          onChange={props.handleChange()}
-          checked={props.state.wheels}
+          onChange={props.updateProtList("wheels")}
+          checked={props.state.protection.indexOf("wheels") > -1}
         />
         <label for="wheels" className="aLabel">
           <p className="imageDesc">Wheels</p>
@@ -32,8 +32,8 @@ function CarProtectionQ(props) {
           name="windshield"
           id="windshield"
           className="paintSelect input-hidden"
-          onChange={props.handleChange()}
-          checked={props.state.windshield}
+          onChange={props.updateProtList("windshield")}
+          checked={props.state.protection.indexOf("windshield") > -1}
         />
         <label for="windshield" className="aLabel">
           <p className="imageDesc">Windshield</p>
@@ -45,8 +45,8 @@ function CarProtectionQ(props) {
           name="allWindows"
           id="allWindows"
           className="paintSelect input-hidden"
-          onChange={props.handleChange()}
-          checked={props.state.allWindows}
+          onChange={props.updateProtList("allWindows")}
+          checked={props.state.protection.indexOf("allWindows") > -1}
         />
         <label for="allWindows" className="aLabel">
           <p className="imageDesc">All Windows</p>
@@ -58,8 +58,8 @@ function CarProtectionQ(props) {
           name="paint"
           id="paint"
           className="paintSelect input-hidden"
-          onChange={props.handleChange()}
-          checked={props.state.paint}
+          onChange={props.updateProtList("paint")}
+          checked={props.state.protection.indexOf("paint") > -1}
         />
         <label for="paint" className="aLabel">
           <p className="imageDesc">Paint</p>
@@ -71,8 +71,8 @@ function CarProtectionQ(props) {
           name="trimLights"
           id="trimLights"
           className="paintSelect input-hidden"
-          onChange={props.handleChange()}
-          checked={props.state.trimLights}
+          onChange={props.updateProtList("trimLights")}
+          checked={props.state.protection.indexOf("trimLights") > -1}
         />
         <label for="trimLights" className="aLabel">
           <p className="imageDesc">Trim & Lights</p>
