@@ -20,10 +20,10 @@ app.use(cors(corsOptions)) // Use this after the variable declaration
 
 app.use(bodyParser.json())
 
-// mongoose.set('strictQuery', true);
-// mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
-//     console.log("Successful Connection to MongoDB")
-// })
+mongoose.set('strictQuery', true);
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
+    console.log("Successful Connection to MongoDB")
+})
 
 app.use('/quotes', quoteRoute);
 app.use('/accounts', accountRoute);
