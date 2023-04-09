@@ -20,6 +20,10 @@ app.use(cors(corsOptions)) // Use this after the variable declaration
 
 app.use(bodyParser.json())
 
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
     console.log("Successful Connection to MongoDB")

@@ -3,7 +3,8 @@ const router = express.Router();
 const path = require('path');
 let reqPath = path.join(__dirname, '../../models');
 
-const User = require(path.join(reqPath, "/accounts/admin_schema"));
+
+const User = require("../../models/accounts/admin_schema")
 
 
 router.get('/', (req, res) => {
