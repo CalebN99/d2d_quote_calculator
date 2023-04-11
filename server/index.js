@@ -6,9 +6,11 @@ require('dotenv/config');
 
 //Route imports
 
-const quoteRoute = require('./routes/quotes/quote_routes')
+const quoteRoute = require('./routes/quotes/quote_routes');
 const accountRoute = require('./routes/accounts/admin_routes');
+const pricingRoute = require('./routes/pricing/pricing_routes');
 const bodyParser = require("body-parser");
+
 const cors=require("cors");
 const corsOptions ={
    origin:'*', 
@@ -31,6 +33,7 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
 
 app.use('/quotes', quoteRoute);
 app.use('/accounts', accountRoute);
+app.use('/pricing', pricingRoute);
 
 app.get("/", (req, res) => {
     res.send("We are on home")

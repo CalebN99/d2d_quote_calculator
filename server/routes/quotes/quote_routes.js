@@ -21,6 +21,8 @@ router.post("/", (req, res) => {
       priceEstimation: req.body.priceEstimation,
       emailList: req.body.emailList
     });
+
+    
   
     newQuote.save().then((item) => res.json(item));
     console.log("Created new quote");
