@@ -1,0 +1,31 @@
+.form-container {
+    width: 20em;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    padding: 1em;
+    border-radius: 1em;
+    margin-top: 2.5em;
+}
+
+.form-container button {
+    margin: 0 auto;
+}
+
+.tab-container {
+    margin: 0 auto;
+    margin-top: 3em;
+    width: 70vw;
+ 
+}
+
+.sizePriceForm {
+    width: 22em;
+}
+
+.sizePriceForm input {
+    width: 10em;
+}
+
+.sizePriceForm label {
+    margin-top: .5em;
+}

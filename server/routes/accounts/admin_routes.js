@@ -24,7 +24,7 @@ router.post('/generateUser', async (req, res) => {
     
              user.save()
             .then(data => {
-                res.json(data)
+                res.send(true)
             })
             .catch(err => {
                 res.json(err);
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
         if (user !== null) {
             user.comparePassword(req.body.password, function(err, isMatch) {
                 if (isMatch) {
-                    res.json(user);
+                    res.send(true);
                 } 
                 else if (!isMatch) {
                     res.send(false);

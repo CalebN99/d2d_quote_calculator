@@ -24,7 +24,10 @@ class Calculator extends Component {
       modal: false,
       loadQuote: false,
       quote: false,
-      protection: []
+      protection: [],
+      name: "",
+      email: "",
+      emailList: false
     };
   }
 
@@ -36,6 +39,10 @@ class Calculator extends Component {
 
   loadQuote = () => {
     this.setState({ loadQuote: true });
+
+    console.log(this.state.name);
+    console.log(this.state.email)
+    console.log(this.state.emailList);
 
     setTimeout(() => {
       this.setState({ loadQuote: false });
@@ -66,6 +73,12 @@ class Calculator extends Component {
       [event.target.name]: event.target.checked,
     });
   };
+
+  handleTextChange = () => (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
 
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
@@ -131,16 +144,18 @@ class Calculator extends Component {
               <fieldset disabled={this.state.quote}>
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" required />
+                  <input name="name" type="text" class="form-control" id="name" required onChange={this.handleTextChange()}/>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
                     type="email"
                     class="form-control"
+                    name="email"
                     id="email"
                     placeholder="jonathan@dirty2dreamy.com..."
                     required
+                    onChange={this.handleTextChange()}
                   />
                 </div>
                 <div class="form-group">
@@ -149,6 +164,8 @@ class Calculator extends Component {
                       class="form-check-input"
                       type="checkbox"
                       id="gridCheck"
+                      name="emailList"
+                      onChange={this.handleChange()}
                     />
                     <label class="form-check-label" for="gridCheck">
                       Would you like to signup for our emailing list?
@@ -178,6 +195,10 @@ class Calculator extends Component {
                     <span>Estimate: </span>
                     {"$" + this.props.quotes.quote}
                   </h3>
+                  <p>{this.state.name}</p>
+                  <p>{this.state.email}</p>
+                  <p>{this.state.emailList}</p>
+
                   <button type="button" class="btn btn-primary mx-auto">
                     <a
                       href="https://www.facebook.com/Dirty2Dreamy"

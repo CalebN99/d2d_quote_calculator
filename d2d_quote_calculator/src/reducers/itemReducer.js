@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
   GET_QUOTES,
+  LOGIN
 } from "../actions/types";
 
 
@@ -8,6 +9,7 @@ const initialState = {
   quotes: [],
   car: "Subaru",
   quote: 1650,
+  loggedIn: false,
   auth: (a = initialState) => {
     if (a.user.user.length > 0) {
       return {
@@ -25,6 +27,11 @@ export default function (state = initialState, action) {
         items: action.payload,
         loading: false,
       };
+    case LOGIN:
+      return {
+        ...state,
+        loggedIn: action.payload
+      }
     default:
       return {
         ...state,
