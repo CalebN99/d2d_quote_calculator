@@ -195,9 +195,6 @@ class Calculator extends Component {
                     <span>Estimate: </span>
                     {"$" + this.props.quotes.quote}
                   </h3>
-                  <p>{this.state.name}</p>
-                  <p>{this.state.email}</p>
-                  <p>{this.state.emailList}</p>
 
                   <button type="button" class="btn btn-primary mx-auto">
                     <a

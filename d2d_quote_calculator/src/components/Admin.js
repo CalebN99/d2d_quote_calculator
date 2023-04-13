@@ -79,6 +79,7 @@ class Admin extends Component {
             ) : (
               <Tabs className="tab-container">
                 <TabList>
+                  <Tab>Quotes</Tab>
                   <Tab>Small</Tab>
                   <Tab>Medium</Tab>
                   <Tab>Large</Tab>
@@ -86,6 +87,10 @@ class Admin extends Component {
                   <Tab>Protection</Tab>
                 </TabList>
 
+
+                <TabPanel>
+                  <h2>Quotes</h2>
+                </TabPanel>
                 <TabPanel>
                   <h2>Small</h2>
                   <div className="sizePriceForm">
