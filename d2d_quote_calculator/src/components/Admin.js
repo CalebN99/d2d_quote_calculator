@@ -46,7 +46,7 @@ class Admin extends Component {
               <img className="logoImage" src={logo} alt="logo"></img>
             </Link>
 
-            {!this.props.state.loggedIn ? (
+            {this.props.state.loggedIn ? (
               <div className="form-container">
                 <form onSubmit={this.handleSubmit}>
                   <div class="form-group">
@@ -90,6 +90,60 @@ class Admin extends Component {
 
                 <TabPanel>
                   <h2>Quotes</h2>
+                  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Email List</th>
+      <th scope="col">Car Size</th>
+      <th scope="col">Waterspots</th>
+      <th scope="col">Swirls</th>
+      <th scope="col">Scratches</th>
+      <th scope="col">Protection</th>
+      <th scope="col">Estimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Caleb Norris</td>
+      <td>caleb@gmail.com</td>
+      <td>True</td>
+      <td>Tesla</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Wheels, Paint, All Windows</td>
+      <td>$1250</td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>Caleb Norris</td>
+      <td>caleb@gmail.com</td>
+      <td>True</td>
+      <td>Tesla</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Wheels, Paint, All Windows</td>
+      <td>$1250</td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>Caleb Norris</td>
+      <td>caleb@gmail.com</td>
+      <td>True</td>
+      <td>Tesla</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Wheels, Paint, All Windows</td>
+      <td>$1250</td>
+    </tr>
+  </tbody>
+</table>
                 </TabPanel>
                 <TabPanel>
                   <h2>Small</h2>
