@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/calculator.css";
 import { Provider, connect } from "react-redux";
-import { getQuotes } from "../actions/itemAction";
+import { getQuotes, createQuote } from "../actions/itemAction";
 import store from "../store";
 import logo from "../assets/images/logo.webp";
 import { Link } from "react-router-dom";
@@ -30,6 +30,23 @@ class Calculator extends Component {
       emailList: false
     };
   }
+
+  handleSubmit = (event) => {
+    console.log("Attempting create quote");
+    const quote = {
+      name: this.state.name,
+      email: this.state.email,
+      carSize: this.state.vehicleSize,
+      waterSpots: this.state.waterSpots,
+      swirls: this.state.swirls,
+      scratches: this.state.scratches,
+      protection: this.state.protection,
+      emailList: this.state.emailList
+    };
+
+    this.props.createQuote(quote);
+    event.preventDefault();
+  };
 
   handleRadioButton = (value) => {
     this.setState({
@@ -140,7 +157,7 @@ class Calculator extends Component {
             <Modal.Title>Submit to get your quote now!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <fieldset disabled={this.state.quote}>
                 <div class="form-group">
                   <label for="name">Name</label>
@@ -149,7 +166,7 @@ class Calculator extends Component {
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
                     name="email"
                     id="email"
@@ -174,7 +191,7 @@ class Calculator extends Component {
                 </div>
                 <button
                   onClick={this.loadQuote}
-                  type="button"
+                  type="submit"
                   class="btn btn-primary"
                 >
                   Get Quote
@@ -193,7 +210,7 @@ class Calculator extends Component {
                 <div>
                   <h3>
                     <span>Estimate: </span>
-                    {"$" + this.props.quotes.quote}
+                    {"$" + this.props.quotes.quote.priceEstimation}
                   </h3>
 
                   <button type="button" class="btn btn-primary mx-auto">
@@ -221,4 +238,4 @@ const mapStateToProps = (state) => ({
   quotes: state.state
 });
 
-export default connect(mapStateToProps, { getQuotes })(Calculator);
+export default connect(mapStateToProps, { getQuotes, createQuote })(Calculator);

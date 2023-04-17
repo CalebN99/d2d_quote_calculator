@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "../styles/admin.css";
 import { Provider, connect } from "react-redux";
-import { login } from "../actions/itemAction";
+import { login, getQuotes, deleteQuote, getProtPricing} from "../actions/itemAction";
 import store from "../store";
 import logo from "../assets/images/logo.webp";
 import { Link } from "react-router-dom";
-
+import ReactLoading from "react-loading";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/fontawesome-free-solid'
 
 class Admin extends Component {
   constructor(props) {
@@ -15,7 +17,27 @@ class Admin extends Component {
     this.state = {
       username: "",
       password: "",
+      wheels: 0,
+      paint: 0,
+      windshield: 0,
+      allWindows: 0,
+      trimLights: 0,
+
     };
+  }
+
+  componentDidMount() {
+    if (this.props.state.loggedIn) {
+      this.props.getQuotes();
+    }
+  }
+
+  deleteQuote = (id) => (event) => {
+    console.log("delete quote: " + id)
+
+    this.props.deleteQuote(id)
+    this.props.state.quotes = this.props.state.quotes.filter(e => e._id !== id)
+    event.preventDefault();
   }
 
   handleSubmit = (event) => {
@@ -26,10 +48,38 @@ class Admin extends Component {
     };
 
     this.props.login(account);
-    event.preventDefault();
 
-    console.log("prop: ", this.props.state.account);
+    setTimeout(() => {
+      if (this.props.state.loggedIn) {
+        this.props.getQuotes();
+        this.props.getProtPricing();
+        console.log("receivedQuotes");
+      }
+    }, 1500);
+
+    setTimeout(() => {
+      console.log('yo')
+      console.log(this.props.state.protPricing)
+      this.setState({wheels: this.props.state.protPricing.wheels})
+      this.setState({allWindows: this.props.state.protPricing.allWindows})
+      this.setState({windshield: this.props.state.protPricing.windshield})
+      this.setState({paint: this.props.state.protPricing.paint})
+      this.setState({trimLights: this.props.state.protPricing.trimLights})
+
+
+
+
+    }, 2000);
+
+    // this.setState({wheels: this.props.state.protPrice})
+
+    event.preventDefault();
   };
+
+  autoCapitalize(string) {
+    string = string.charAt(0).toUpperCase() + string.slice(1);
+    return string;
+  }
 
   handleTextChange = () => (event) => {
     this.setState({
@@ -37,6 +87,7 @@ class Admin extends Component {
     });
   };
 
+  //10
   render() {
     return (
       <Provider className="provider" store={store}>
@@ -46,7 +97,7 @@ class Admin extends Component {
               <img className="logoImage" src={logo} alt="logo"></img>
             </Link>
 
-            {this.props.state.loggedIn ? (
+            {!this.props.state.loggedIn ? (
               <div className="form-container">
                 <form onSubmit={this.handleSubmit}>
                   <div class="form-group">
@@ -87,63 +138,63 @@ class Admin extends Component {
                   <Tab>Protection</Tab>
                 </TabList>
 
-
                 <TabPanel>
                   <h2>Quotes</h2>
                   <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Email List</th>
-      <th scope="col">Car Size</th>
-      <th scope="col">Waterspots</th>
-      <th scope="col">Swirls</th>
-      <th scope="col">Scratches</th>
-      <th scope="col">Protection</th>
-      <th scope="col">Estimate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Caleb Norris</td>
-      <td>caleb@gmail.com</td>
-      <td>True</td>
-      <td>Tesla</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>Wheels, Paint, All Windows</td>
-      <td>$1250</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Caleb Norris</td>
-      <td>caleb@gmail.com</td>
-      <td>True</td>
-      <td>Tesla</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>Wheels, Paint, All Windows</td>
-      <td>$1250</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Caleb Norris</td>
-      <td>caleb@gmail.com</td>
-      <td>True</td>
-      <td>Tesla</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>Wheels, Paint, All Windows</td>
-      <td>$1250</td>
-    </tr>
-  </tbody>
-</table>
+                    <thead>
+                      <tr>
+                      <th scope="col"></th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Email List</th>
+                        <th scope="col">Car Size</th>
+                        <th scope="col">Waterspots</th>
+                        <th scope="col">Swirls</th>
+                        <th scope="col">Scratches</th>
+                        <th scope="col">Protection</th>
+                        <th scope="col">Estimate</th>
+                      </tr>
+                    </thead>
+
+                    {!this.props.state.quotes? (
+                      <div className="tableLoader">
+                        <ReactLoading
+                          className="load"
+                          type={"spin"}
+                          color={"blue"}
+                        />
+                      </div>
+                    ) : (
+                      <tbody>
+                        {this.props.state.quotes.map((quote) => (
+                          <tr>
+                            <td><FontAwesomeIcon icon={faTrash} className="tableDelete" onClick={this.deleteQuote(quote._id)}/></td>
+                            <th scope="row">
+                              {quote.dateCreated.substring(0, 10)}
+                            </th>
+                            <td>{quote.name}</td>
+                            <td>{quote.email}</td>
+                            <td>
+                              {this.autoCapitalize(quote.emailList.toString())}
+                            </td>
+                            <td>{quote.carSize}</td>
+                            <td>
+                              {this.autoCapitalize(quote.waterspots.toString())}
+                            </td>
+                            <td>
+                              {this.autoCapitalize(quote.swirls.toString())}
+                            </td>
+                            <td>
+                              {this.autoCapitalize(quote.scratches.toString())}
+                            </td>
+                            <td>{quote.protection.join(", ")}</td>
+                            <td>${quote.priceEstimation}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    )}
+                  </table>
                 </TabPanel>
                 <TabPanel>
                   <h2>Small</h2>
@@ -329,7 +380,7 @@ class Admin extends Component {
                             class="form-control"
                             name="wheels"
                             id="wheels"
-                            value={120}
+                            placeholder={this.state.wheels}
                             onChange={this.handleTextChange()}
                           />
                         </div>
@@ -340,7 +391,7 @@ class Admin extends Component {
                             class="form-control"
                             name="windshield"
                             id="windshield"
-                            value={280}
+                            placeholder={this.state.windshield}
                             onChange={this.handleTextChange()}
                           />
                         </div>
@@ -354,7 +405,7 @@ class Admin extends Component {
                             class="form-control"
                             name="allWindows"
                             id="allWindows"
-                            value={120}
+                            placeholder={this.state.allWindows}
                             onChange={this.handleTextChange()}
                           />
                         </div>
@@ -365,7 +416,7 @@ class Admin extends Component {
                             class="form-control"
                             name="paint"
                             id="paint"
-                            value={280}
+                            placeholder={this.state.paint}
                             onChange={this.handleTextChange()}
                           />
                         </div>
@@ -378,7 +429,7 @@ class Admin extends Component {
                             class="form-control"
                             name="trimLights"
                             id="trimLights"
-                            value={120}
+                            placeholder={this.state.trimLights}
                             onChange={this.handleTextChange()}
                           />
                         </div>
@@ -403,4 +454,4 @@ const mapStateToProps = (state) => ({
   state: state.state,
 });
 
-export default connect(mapStateToProps, { login })(Admin);
+export default connect(mapStateToProps, { login, getQuotes, deleteQuote, getProtPricing})(Admin);

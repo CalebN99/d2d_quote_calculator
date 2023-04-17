@@ -10,8 +10,7 @@ const Quote = mongoose.Schema({
     protection: {type: [String], required: true, default: []},
     priceEstimation: {type: Number, requird: true},
     emailList: {type: Boolean, required: true, default: false},
-    dateCreated: {type: Date, default: Date.now},
-    
+    dateCreated: {type: Date, default: Date.now}, 
 })
 
 

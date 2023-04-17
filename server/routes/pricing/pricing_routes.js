@@ -7,7 +7,7 @@ const ProtPrice = require("../../models/pricing/protection_schema");
 
 // Protection Pricing
 router.get("/protPricing", (req, res) => {
-  res.send("We are on quotes");
+  console.log("Grabbing Prot pricing");
 
   ProtPrice.findOne().then((items) => res.send(items));
 });
@@ -22,7 +22,7 @@ router.post("/protPricing", (req, res) => {
   });
 
   newProt.save().then((item) => res.json(item));
-  console.log("Created new quote");
+  console.log("Created prot pricing");
 });
 
 router.put("/updateProt", (req, res) => {});

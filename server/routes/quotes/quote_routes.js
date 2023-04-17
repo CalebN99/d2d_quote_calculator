@@ -8,20 +8,21 @@ const PolishPrice = require("../../models/pricing/polish_schema");
 const ProtPrice = require("../../models/pricing/protection_schema");
 
 router.get("/", (req, res) => {
-  res.send("We are on quotes");
+  Quote.find().then((items) => res.json(items));
 });
+
+router.delete("/:id/delete", (req, res) => {
+  Quote.findByIdAndRemove(req.params.id).then((items) => res.send("Deleted Quote"))
+})
 
 router.post("/", (req, res) => {
   ProtPrice.findOne().then((items) => {
     let price = 0;
     let polishPricing;
     let protPricing;
-    let polishLevel = 0;
     let size = "";
 
-    if (req.body.waterspots === true) polishLevel += 1;
-    if (req.body.swirls === true) polishLevel += 1;
-    if (req.body.scratches === true) polishLevel += 1;
+
 
     protPricing = items;
 
@@ -47,7 +48,14 @@ router.post("/", (req, res) => {
     }
 
     PolishPrice.findOne({ size: size }).then((items) => {
-      console.log(items);
+
+      let polishLevel = 0;
+      console.log(req.body.swirls)
+      if (req.body.waterspots) polishLevel += 1;
+      if (req.body.swirls) polishLevel += 1;
+      if (req.body.scratches) polishLevel += 1;
+
+      console.log("Polish Level: " + polishLevel);
 
       switch (polishLevel) {
         case 0:
@@ -61,16 +69,25 @@ router.post("/", (req, res) => {
           break;
       }
 
-      if (protection.contains("wheels")) price += protPricing.wheels;
-      if (protection.contains("allWindows")) price += protPricing.allWindows;
+      console.log(req.body.protection)
+
+      if (req.body.protection.includes("wheels")) price += protPricing.wheels;
+      if (req.body.protection.includes("allWindows")) price += protPricing.allWindows;
       if (
-        protection.contains("windshield") &&
-        !protection.contains("allWindows")
+        req.body.protection.includes("windshield") &&
+        !req.body.protection.includes("allWindows")
       ) {
         price += protPricing.windshield;
       }
-      if (protection.contains("paint")) price += protPricing.paint;
-      if (protection.contains("trimLights")) price += protPricing.trimLights;
+      if (req.body.protection.includes("paint")) price += protPricing.paint;
+      if (req.body.protection.includes("trimLights")) price += protPricing.trimLights;
+
+
+
+      if (req.body.protection.includes("windshield") &&
+      req.body.protection.includes("allWindows")) {
+        req.body.protection = req.body.protection.filter(e => e !== "windshield")
+      }
 
       console.log("Price: $" + price);
 
@@ -80,7 +97,7 @@ router.post("/", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         carSize: req.body.carSize,
-        waterspots: req.body.waterspots,
+        waterspots: req.body.waterSpots,
         swirls: req.body.swirls,
         scratches: req.body.scratches,
         protection: req.body.protection,

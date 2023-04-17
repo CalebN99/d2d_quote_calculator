@@ -30,3 +30,12 @@
     margin-top: .5em;
 }
 
+.tableDelete {
+    font-size: 1.2em;
+    transition: all ease-in .15s;
+}
+.tableDelete:hover {
+    color: red;
+    cursor: pointer;
+}
+

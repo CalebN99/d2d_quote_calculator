@@ -1,15 +1,19 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
   GET_QUOTES,
-  LOGIN
+  LOGIN,
+  CREATE_QUOTE,
+  DELETE_QUOTE,
+  GET_PROT_PRICE
 } from "../actions/types";
 
 
 const initialState = {
-  quotes: [],
+  quotes: false,
   car: "Subaru",
-  quote: 1650,
+  quote: 0,
   loggedIn: false,
+  protPricing: [],
   auth: (a = initialState) => {
     if (a.user.user.length > 0) {
       return {
@@ -24,17 +28,32 @@ export default function (state = initialState, action) {
     case GET_QUOTES:
       return {
         ...state,
-        items: action.payload,
-        loading: false,
+        quotes: action.payload.reverse(),
       };
     case LOGIN:
       return {
         ...state,
         loggedIn: action.payload
       }
+    case CREATE_QUOTE:
+      return {
+        ...state,
+        quote: action.payload
+      }  
+    case DELETE_QUOTE:
+      return {
+        ...state
+      }  
+    case GET_PROT_PRICE:
+      return {
+        ...state,
+        protPricing: action.payload
+
+      } 
     default:
       return {
         ...state,
+       
       };
   }
 }
