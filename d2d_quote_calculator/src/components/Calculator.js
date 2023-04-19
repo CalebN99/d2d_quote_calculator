@@ -159,15 +159,15 @@ class Calculator extends Component {
           <Modal.Body>
             <form onSubmit={this.handleSubmit}>
               <fieldset disabled={this.state.quote}>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="name">Name</label>
-                  <input name="name" type="text" class="form-control" id="name" required onChange={this.handleTextChange()}/>
+                  <input name="name" type="text" className="form-control" id="name" required onChange={this.handleTextChange()}/>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="email">Email</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     name="email"
                     id="email"
                     placeholder="jonathan@dirty2dreamy.com..."
@@ -175,10 +175,10 @@ class Calculator extends Component {
                     onChange={this.handleTextChange()}
                   />
                 </div>
-                <div class="form-group">
-                  <div class="form-check">
+                <div className="form-group">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
                       id="gridCheck"
                       name="emailList"
@@ -192,7 +192,7 @@ class Calculator extends Component {
                 <button
                   onClick={this.loadQuote}
                   type="submit"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                 >
                   Get Quote
                 </button>

@@ -45,4 +45,42 @@ router.get("/polishPricing", (req, res) => {
   PolishPrice.find().then((items) => res.json(items));
 });
 
+router.post("/updateProt/:id", (req, res) => {
+
+  ProtPrice.findByIdAndUpdate( req.params.id, {
+    $set: {
+      wheels: req.body.wheels,
+      paint: req.body.paint,
+      windshield: req.body.windshield,
+      allWindows: req.body.allWindows,
+      trimLights: req.body.trimLights
+    }
+  },
+  {new : true},
+  (err, protPrice) => {
+    console.log("Updated ProtPrice");
+    if (err) res.send(err);
+    else res.send(protPrice);
+  }
+  )
+});
+
+router.post("/updatePolish/:id", (req, res) => {
+
+  PolishPrice.findByIdAndUpdate( req.params.id, {
+    $set: {
+      enhancement: req.body.enhancement,
+      oneStep: req.body.oneStep,
+      twoStep: req.body.twoStep
+    }
+  },
+  {new : true},
+  (err, polishPrice) => {
+    console.log("Updated PolishPrice");
+    if (err) res.send(err);
+    else res.send(polishPrice);
+  }
+  )
+});
+
 module.exports = router;

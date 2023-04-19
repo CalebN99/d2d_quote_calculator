@@ -30,6 +30,11 @@
     margin-top: .5em;
 }
 
+.table {
+    max-height: 40em;
+    overflow: auto;
+}
+
 .tableDelete {
     font-size: 1.2em;
     transition: all ease-in .15s;

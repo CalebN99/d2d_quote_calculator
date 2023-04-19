@@ -28,12 +28,12 @@ class Home extends Component {
               </p>
             </div>
 
-            <button type="button" class="btn btn-primary mx-auto">
+            <button type="button" className="btn btn-primary mx-auto">
               {" "}
               <Link to="/quote">Start Quote</Link>
             </button>
 
-            <button type="button" class="btn btn-success mx-auto">
+            <button type="button" className="btn btn-success mx-auto">
               <a
                 href="https://thedreamyway.com/"
                 target="_blank"

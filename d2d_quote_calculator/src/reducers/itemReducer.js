@@ -4,7 +4,10 @@ import {
   LOGIN,
   CREATE_QUOTE,
   DELETE_QUOTE,
-  GET_PROT_PRICE
+  GET_PROT_PRICE,
+  UPDATE_PROT,
+  GET_POLISH_PRICING,
+  UPDATE_POLISH
 } from "../actions/types";
 
 
@@ -14,6 +17,7 @@ const initialState = {
   quote: 0,
   loggedIn: false,
   protPricing: [],
+  polishPricing: [],
   auth: (a = initialState) => {
     if (a.user.user.length > 0) {
       return {
@@ -49,6 +53,20 @@ export default function (state = initialState, action) {
         ...state,
         protPricing: action.payload
 
+      } 
+    case UPDATE_PROT:
+      return {
+        ...state,
+        protPricing: action.payload
+      }  
+    case GET_POLISH_PRICING:
+      return {
+        ...state,
+        polishPricing: action.payload
+      }
+    case UPDATE_POLISH:
+      return {
+        ...state
       } 
     default:
       return {
