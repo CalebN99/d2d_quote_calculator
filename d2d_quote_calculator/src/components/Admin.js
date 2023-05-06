@@ -8,7 +8,7 @@ import {
   getProtPricing,
   updateProtPrice,
   getPolishPricing,
-  updatePolishPricing
+  updatePolishPricing,
 } from "../actions/itemAction";
 import store from "../store";
 import logo from "../assets/images/logo.webp";
@@ -19,6 +19,7 @@ import "react-tabs/style/react-tabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/fontawesome-free-solid";
 import Modal from "react-bootstrap/Modal";
+import { CSVLink, CSVDownload } from "react-csv";
 
 class Admin extends Component {
   constructor(props) {
@@ -37,12 +38,13 @@ class Admin extends Component {
       id: "",
       modal: false,
       idDelete: "",
+      csv: "",
     };
   }
 
   openModal = (id) => (event) => {
     this.setState({ modal: true });
-    this.setState({idDelete: id})
+    this.setState({ idDelete: id });
   };
 
   closeModal = () => {
@@ -69,10 +71,10 @@ class Admin extends Component {
       id: this.state.id,
       enhancement: this.state.enhancement,
       oneStep: this.state.oneStep,
-      twoStep: this.state.twoStep
+      twoStep: this.state.twoStep,
     };
 
-    console.log("Attempting Polish update")
+    console.log("Attempting Polish update");
 
     this.props.updatePolishPricing(updatedPrice);
     this.props.getPolishPricing();
@@ -81,14 +83,13 @@ class Admin extends Component {
   };
 
   tabSwitch = (size) => (event) => {
-    let pricing = this.props.state.polishPricing.filter(e => e.size === size);
-    console.log(pricing[0].enhancement)
-    this.setState({enhancement: pricing[0].enhancement});
-    this.setState({oneStep: pricing[0].oneStep});
-    this.setState({twoStep: pricing[0].twoStep});
-    this.setState({id: pricing[0]._id})
-
-  }
+    let pricing = this.props.state.polishPricing.filter((e) => e.size === size);
+    console.log(pricing[0].enhancement);
+    this.setState({ enhancement: pricing[0].enhancement });
+    this.setState({ oneStep: pricing[0].oneStep });
+    this.setState({ twoStep: pricing[0].twoStep });
+    this.setState({ id: pricing[0]._id });
+  };
 
   deleteQuote = (id) => (event) => {
     console.log("delete quote: " + id);
@@ -126,6 +127,8 @@ class Admin extends Component {
       this.setState({ windshield: this.props.state.protPricing.windshield });
       this.setState({ paint: this.props.state.protPricing.paint });
       this.setState({ trimLights: this.props.state.protPricing.trimLights });
+
+      this.csvCreate();
     }, 2000);
 
     // this.setState({wheels: this.props.state.protPrice})
@@ -142,6 +145,37 @@ class Admin extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+  };
+
+  csvCreate = (event) => {
+    const csvString = [
+      [
+        "date",
+        "name",
+        "carSize",
+        "email",
+        "emailList",
+        "protection",
+        "scratches",
+        "swirls",
+        "waterspots",
+        "priceEstimation",
+      ],
+      ...this.props.state.quotes.map((item) => [
+        item.dateCreated.substring(0, 10),
+        item.name,
+        item.carSize,
+        item.email,
+        item.emailList,
+        item.protection.join(", "),
+        item.scratches,
+        item.swirls,
+        item.waterspots,
+        item.priceEstimation,
+      ]),
+    ];
+
+    this.setState({ csv: csvString });
   };
 
   //10
@@ -184,224 +218,247 @@ class Admin extends Component {
                 </form>
               </div>
             ) : (
-              <Tabs className="tab-container">
-                <TabList>
-                  <Tab>Quotes</Tab>
-                  <Tab onClick={this.tabSwitch("small")}>Small</Tab>
-                  <Tab onClick={this.tabSwitch("medium")}>Medium</Tab>
-                  <Tab onClick={this.tabSwitch("large")}>Large</Tab>
-                  <Tab onClick={this.tabSwitch("xLarge")}>Extra Large</Tab>
-                  <Tab>Protection</Tab>
-                </TabList>
+              <div>
                 
+                <Tabs className="tab-container">
+                  <TabList>
+                    <Tab>Quotes</Tab>
+                    <Tab onClick={this.tabSwitch("small")}>Small</Tab>
+                    <Tab onClick={this.tabSwitch("medium")}>Medium</Tab>
+                    <Tab onClick={this.tabSwitch("large")}>Large</Tab>
+                    <Tab onClick={this.tabSwitch("xLarge")}>Extra Large</Tab>
+                    <Tab>Protection</Tab>
+                  </TabList>
 
-                <TabPanel>
-                  <h2>Quotes</h2>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Email List</th>
-                        <th scope="col">Car Size</th>
-                        <th scope="col">Waterspots</th>
-                        <th scope="col">Swirls</th>
-                        <th scope="col">Scratches</th>
-                        <th scope="col">Protection</th>
-                        <th scope="col">Estimate</th>
-                      </tr>
-                    </thead>
-
-                    {!this.props.state.quotes ? (
-                      <div className="tableLoader">
-                        <ReactLoading
-                          className="load"
-                          type={"spin"}
-                          color={"blue"}
-                        />
-                      </div>
-                    ) : (
-                      <tbody>
-                        {this.props.state.quotes.map((quote) => (
-                          <tr>
-                            <td>
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                className="tableDelete"
-                                onClick={this.openModal(quote._id)}
-                              />
-                            </td>
-                            <th scope="row">
-                              {quote.dateCreated.substring(0, 10)}
-                            </th>
-                            <td>{quote.name}</td>
-                            <td>{quote.email}</td>
-                            <td>
-                              {this.autoCapitalize(quote.emailList.toString())}
-                            </td>
-                            <td>{quote.carSize}</td>
-                            <td>
-                              {this.autoCapitalize(quote.waterspots.toString())}
-                            </td>
-                            <td>
-                              {this.autoCapitalize(quote.swirls.toString())}
-                            </td>
-                            <td>
-                              {this.autoCapitalize(quote.scratches.toString())}
-                            </td>
-                            <td>{quote.protection.join(", ")}</td>
-                            <td>${quote.priceEstimation}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    )}
-                  </table>
-                </TabPanel>
-                {this.props.state.polishPricing.map((polish) => (
                   <TabPanel>
-                    <h2>{this.autoCapitalize(polish.size)}</h2>
+                    <div className="quote_header">
+                    <h2>Quotes</h2>
+                   
+                   <CSVLink className="csv_link" data={this.state.csv}> <button className="btn btn-primary">
+                     Generate CSV
+                     </button></CSVLink>
+                    </div>
+                   
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Email List</th>
+                          <th scope="col">Car Size</th>
+                          <th scope="col">Waterspots</th>
+                          <th scope="col">Swirls</th>
+                          <th scope="col">Scratches</th>
+                          <th scope="col">Protection</th>
+                          <th scope="col">Estimate</th>
+                        </tr>
+                      </thead>
+
+                      {!this.props.state.quotes ? (
+                        <div className="tableLoader">
+                          <ReactLoading
+                            className="load"
+                            type={"spin"}
+                            color={"blue"}
+                          />
+                        </div>
+                      ) : (
+                        <tbody>
+                          {this.props.state.quotes.map((quote) => (
+                            <tr>
+                              <td>
+                                <FontAwesomeIcon
+                                  icon={faTrash}
+                                  className="tableDelete"
+                                  onClick={this.openModal(quote._id)}
+                                />
+                              </td>
+                              <th scope="row">
+                                {quote.dateCreated.substring(0, 10)}
+                              </th>
+                              <td>{quote.name}</td>
+                              <td>{quote.email}</td>
+                              <td>
+                                {this.autoCapitalize(
+                                  quote.emailList.toString()
+                                )}
+                              </td>
+                              <td>{quote.carSize}</td>
+                              <td>
+                                {this.autoCapitalize(
+                                  quote.waterspots.toString()
+                                )}
+                              </td>
+                              <td>
+                                {this.autoCapitalize(quote.swirls.toString())}
+                              </td>
+                              <td>
+                                {this.autoCapitalize(
+                                  quote.scratches.toString()
+                                )}
+                              </td>
+                              <td>{quote.protection.join(", ")}</td>
+                              <td>${quote.priceEstimation}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      )}
+                    </table>
+                  </TabPanel>
+                  {this.props.state.polishPricing.map((polish) => (
+                    <TabPanel>
+                      <h2>{this.autoCapitalize(polish.size)}</h2>
+                      <div className="sizePriceForm">
+                        <form>
+                          <div class="form-group">
+                            <label for="enhancement">Enhancement:</label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              name="enhancement"
+                              id="enhancement"
+                              placeholder={polish.enhancement}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="oneStep">One Step:</label>
+                            <input
+                              name="oneStep"
+                              type="number"
+                              className="form-control"
+                              id="oneStep"
+                              placeholder={polish.oneStep}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label for="twoStep">Two Step:</label>
+                            <input
+                              name="twoStep"
+                              type="number"
+                              className="form-control"
+                              id="twoStep"
+                              placeholder={polish.twoStep}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <button
+                            onClick={this.updatePolishPrice()}
+                            class="btn btn-primary"
+                          >
+                            Update
+                          </button>
+                        </form>
+                      </div>
+                    </TabPanel>
+                  ))}
+                  <TabPanel>
+                    <h2>Protection</h2>
                     <div className="sizePriceForm">
                       <form>
-                        <div class="form-group">
-                          <label for="enhancement">Enhancement:</label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            name="enhancement"
-                            id="enhancement"
-                            placeholder={polish.enhancement}
-                            onChange={this.handleTextChange()}
-                          />
+                        <div className="row">
+                          <div className="col">
+                            <label for="wheels">Wheels:</label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              name="wheels"
+                              id="wheels"
+                              placeholder={this.state.wheels}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <div className="col">
+                            <label for="windshield">Windshield:</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              name="windshield"
+                              id="windshield"
+                              placeholder={this.state.windshield}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <label for="oneStep">One Step:</label>
-                          <input
-                            name="oneStep"
-                            type="number"
-                            className="form-control"
-                            id="oneStep"
-                            placeholder={polish.oneStep}
-                            onChange={this.handleTextChange()}
-                          />
+
+                        <div className="row">
+                          <div className="col">
+                            <label for="allWindows">All Windows:</label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              name="allWindows"
+                              id="allWindows"
+                              placeholder={this.state.allWindows}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <div className="col">
+                            <label for="paint">Paint:</label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              name="paint"
+                              id="paint"
+                              placeholder={this.state.paint}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
                         </div>
-                        <div className="form-group">
-                          <label for="twoStep">Two Step:</label>
-                          <input
-                            name="twoStep"
-                            type="number"
-                            className="form-control"
-                            id="twoStep"
-                            placeholder={polish.twoStep}
-                            onChange={this.handleTextChange()}
-                          />
+                        <div className="row">
+                          <div className="col">
+                            <label for="trimLights">Trim & Lights:</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              name="trimLights"
+                              id="trimLights"
+                              placeholder={this.state.trimLights}
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
                         </div>
-                        <button onClick={this.updatePolishPrice()} class="btn btn-primary">
+
+                        <button
+                          onClick={this.updateProtPrice()}
+                          className="btn btn-primary"
+                        >
                           Update
                         </button>
                       </form>
                     </div>
                   </TabPanel>
-                ))}
-                <TabPanel>
-                  <h2>Protection</h2>
-                  <div className="sizePriceForm">
-                    <form>
-                      <div className="row">
-                        <div className="col">
-                          <label for="wheels">Wheels:</label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            name="wheels"
-                            id="wheels"
-                            placeholder={this.state.wheels}
-                            onChange={this.handleTextChange()}
-                          />
-                        </div>
-                        <div className="col">
-                          <label for="windshield">Windshield:</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            name="windshield"
-                            id="windshield"
-                            placeholder={this.state.windshield}
-                            onChange={this.handleTextChange()}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col">
-                          <label for="allWindows">All Windows:</label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            name="allWindows"
-                            id="allWindows"
-                            placeholder={this.state.allWindows}
-                            onChange={this.handleTextChange()}
-                          />
-                        </div>
-                        <div className="col">
-                          <label for="paint">Paint:</label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            name="paint"
-                            id="paint"
-                            placeholder={this.state.paint}
-                            onChange={this.handleTextChange()}
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col">
-                          <label for="trimLights">Trim & Lights:</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            name="trimLights"
-                            id="trimLights"
-                            placeholder={this.state.trimLights}
-                            onChange={this.handleTextChange()}
-                          />
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={this.updateProtPrice()}
-                        className="btn btn-primary"
-                      >
-                        Update
-                      </button>
-                    </form>
-                  </div>
-                </TabPanel>
-              </Tabs>
+                </Tabs>
+              </div>
             )}
           </div>
           <Modal
-          show={this.state.modal}
-          onHide={this.closeModal}
-          backdrop="static"
-          keyboard={false}
-        >
-      
-          <Modal.Body>
-                  <div className="modal_deletion">
-                  <h1>Confirm Deletion?</h1>
-                    <div className="button_container">
-                    <button className="btn btn-danger" onClick={this.deleteQuote(this.state.idDelete)}>Confirm</button>
-                    <button onClick={this.closeModal} className="btn btn-primary">Keep</button>
-                    </div>
-                  
-                  </div>
-          </Modal.Body>
-        </Modal>
-
+            show={this.state.modal}
+            onHide={this.closeModal}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Body>
+              <div className="modal_deletion">
+                <h1>Confirm Deletion?</h1>
+                <div className="button_container">
+                  <button
+                    className="btn btn-danger"
+                    onClick={this.deleteQuote(this.state.idDelete)}
+                  >
+                    Confirm
+                  </button>
+                  <button onClick={this.closeModal} className="btn btn-primary">
+                    Keep
+                  </button>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+          <button onClick={this.csvCreate}>CSV</button>
         </div>
       </Provider>
     );
@@ -419,5 +476,5 @@ export default connect(mapStateToProps, {
   getProtPricing,
   updateProtPrice,
   getPolishPricing,
-  updatePolishPricing
+  updatePolishPricing,
 })(Admin);

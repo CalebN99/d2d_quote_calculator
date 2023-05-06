@@ -61,3 +61,18 @@
     display: inline-block !important;
 }
 
+.quote_header h2 {
+   display: inline-block;
+}
+
+.csv_link {
+    display: inline-block;
+    margin-left: 1em;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    height: fit-content;
+}
+
+
+
+

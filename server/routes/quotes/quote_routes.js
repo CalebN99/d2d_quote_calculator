@@ -42,13 +42,14 @@ router.post("/", (req, res) => {
       case "truck":
         size = "large";
         break;
-      case "van":
+      case "passengerVan":
         size = "xLarge";
         break;
     }
 
     PolishPrice.findOne({ size: size }).then((items) => {
 
+      console.log(items);
       let polishLevel = 0;
       console.log(req.body.swirls)
       if (req.body.waterspots) polishLevel += 1;
