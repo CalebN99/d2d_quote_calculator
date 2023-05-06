@@ -18,6 +18,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/fontawesome-free-solid";
+import Modal from "react-bootstrap/Modal";
 
 class Admin extends Component {
   constructor(props) {
@@ -33,9 +34,20 @@ class Admin extends Component {
       enhancement: 0,
       oneStep: 0,
       twoStep: 0,
-      id: ""
+      id: "",
+      modal: false,
+      idDelete: "",
     };
   }
+
+  openModal = (id) => (event) => {
+    this.setState({ modal: true });
+    this.setState({idDelete: id})
+  };
+
+  closeModal = () => {
+    this.setState({ modal: false });
+  };
 
   updateProtPrice = () => (event) => {
     let updatedPrice = {
@@ -86,6 +98,7 @@ class Admin extends Component {
       (e) => e._id !== id
     );
     event.preventDefault();
+    this.closeModal();
   };
 
   handleSubmit = (event) => {
@@ -217,7 +230,7 @@ class Admin extends Component {
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 className="tableDelete"
-                                onClick={this.deleteQuote(quote._id)}
+                                onClick={this.openModal(quote._id)}
                               />
                             </td>
                             <th scope="row">
@@ -370,6 +383,25 @@ class Admin extends Component {
               </Tabs>
             )}
           </div>
+          <Modal
+          show={this.state.modal}
+          onHide={this.closeModal}
+          backdrop="static"
+          keyboard={false}
+        >
+      
+          <Modal.Body>
+                  <div className="modal_deletion">
+                  <h1>Confirm Deletion?</h1>
+                    <div className="button_container">
+                    <button className="btn btn-danger" onClick={this.deleteQuote(this.state.idDelete)}>Confirm</button>
+                    <button onClick={this.closeModal} className="btn btn-primary">Keep</button>
+                    </div>
+                  
+                  </div>
+          </Modal.Body>
+        </Modal>
+
         </div>
       </Provider>
     );
