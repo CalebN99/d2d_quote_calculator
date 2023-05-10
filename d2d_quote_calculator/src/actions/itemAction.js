@@ -69,17 +69,23 @@ export const updateProtPrice = (item) => (dispatch) => {
 };
 
 export const getPolishPricing = () => (dispatch) => {
-  axios.get("/pricing/polishPricing").then((res) => 
-  dispatch({
-    type: GET_POLISH_PRICING,
-    payload: res.data
-  }))
+  axios.get("/pricing/polishPricing").then((res) => {
+    dispatch({
+      type: GET_POLISH_PRICING,
+      payload: res.data
+    })
+  }
+ )
+ return true;
 }
 
 export const updatePolishPricing = (item) => (dispatch) => {
-  axios.post(`/pricing/updatePolish/${item.id}`,item).then((res) => 
-  dispatch({
-    type: UPDATE_POLISH,
-    payload: res.data
-  }))
+  axios.post(`/pricing/updatePolish/${item.id}`,item).then((res) => {
+    dispatch({
+      type: UPDATE_POLISH,
+      payload: res.data,
+    })
+  }
+ )
+ return true;
 }

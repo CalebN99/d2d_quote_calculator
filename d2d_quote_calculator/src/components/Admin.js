@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/fontawesome-free-solid";
 import Modal from "react-bootstrap/Modal";
 import { CSVLink, CSVDownload } from "react-csv";
+import toast, { Toaster } from 'react-hot-toast';
 
 class Admin extends Component {
   constructor(props) {
@@ -60,9 +61,10 @@ class Admin extends Component {
       allWindows: this.state.allWindows,
       trimLights: this.state.trimLights,
     };
-
+    
     this.props.updateProtPrice(updatedPrice);
-
+    this.props.getProtPricing();
+    toast.success('Updated Protection Pricing');
     event.preventDefault();
   };
 
@@ -74,10 +76,11 @@ class Admin extends Component {
       twoStep: this.state.twoStep,
     };
 
-    console.log("Attempting Polish update");
-
-    this.props.updatePolishPricing(updatedPrice);
+  
+  
+    this.props.updatePolishPricing(updatedPrice)
     this.props.getPolishPricing();
+    toast.success('Updated Polish Pricing');
 
     event.preventDefault();
   };
@@ -352,6 +355,7 @@ class Admin extends Component {
                             Update
                           </button>
                         </form>
+                        <Toaster />
                       </div>
                     </TabPanel>
                   ))}
@@ -429,6 +433,7 @@ class Admin extends Component {
                           Update
                         </button>
                       </form>
+                      <Toaster />
                     </div>
                   </TabPanel>
                 </Tabs>
