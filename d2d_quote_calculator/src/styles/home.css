@@ -3,12 +3,29 @@
     height: 100vh;
 }
 
+
+
 .homeContainer {
     background-color: white;
     height: 100%;
     width: 75vw !important;
     margin: 0 auto;
 }
+
+@media only screen and (max-width: 600px) {
+    .homeContainer {
+        background-color: white;
+        height: 100%;
+        width: 90vw !important;
+        margin: 0 auto;
+    }
+
+    .logoImage {
+        width: 15em;
+        margin: 0 auto;
+        display: block;
+    }
+  }
 
 .logoImage {
     width: 15em;

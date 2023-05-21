@@ -83,12 +83,10 @@ h1 {
   .aLabel img {
     flex: 1 0 21%;
 
-    max-width: 30em;
-    max-height: 16em;
-    /* min-width: 25em;
-    min-height: 17em; */
-    width: auto;
+    width: 25em !important;
+    max-height: 13em;
     height: auto;
+    object-fit: cover;
     
 
   }
