@@ -16,6 +16,7 @@ class Home extends Component {
     return (
       <Provider className="provider" store={store}>
         <div className="home">
+     
           <div className="homeContainer">
             <Link to="/">
               <img className="logoImage" src={logo} alt="logo"></img>
@@ -42,6 +43,9 @@ class Home extends Component {
                 Main Website
               </a>
             </button>
+            <Link to="/admin" className="adminLink">
+              ADMIN
+            </Link>
           </div>
         </div>
       </Provider>

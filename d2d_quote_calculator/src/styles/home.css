@@ -3,6 +3,13 @@
     height: 100vh;
 }
 
+.adminLink {
+    position: absolute;
+    color: white!important;
+    float: right;
+    bottom: 0;
+}
+
 
 
 .homeContainer {
@@ -21,7 +28,7 @@
     }
 
     .logoImage {
-        width: 15em;
+        width: 13em;
         margin: 0 auto;
         display: block;
     }
