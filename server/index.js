@@ -36,7 +36,6 @@ app.use('/accounts', accountRoute);
 app.use('/pricing', pricingRoute);
 
 
-
 app.use(express.static("../d2d_quote_calculator/build"));
 
 //Connect to Database
