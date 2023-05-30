@@ -12,6 +12,11 @@ router.get('/', (req, res) => {
 
 });
 
+
+/**
+ * Post
+ * Creates and sends new user account, password is hashed using bcrypt
+ */
 router.post('/generateUser', async (req, res) => {
 
     User.findOne({username: req.body.username}, (err, data) => {
@@ -35,6 +40,10 @@ router.post('/generateUser', async (req, res) => {
     })  
 });
 
+/**
+ * Post
+ * Retrieves Admin object that match the username and password
+ */
 router.post('/login', async (req, res) => {
     User.findOne({username: req.body.username}, (err, user) => {
         console.log("user: " , user)

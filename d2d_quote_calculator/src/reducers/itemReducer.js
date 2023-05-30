@@ -12,19 +12,10 @@ import {
 
 
 const initialState = {
-  quotes: false,
-  car: "Subaru",
   quote: 0,
   loggedIn: false,
   protPricing: [],
-  polishPricing: [],
-  auth: (a = initialState) => {
-    if (a.user.user.length > 0) {
-      return {
-        loadingIn: true,
-      };
-    }
-  },
+  polishPricing: []
 };
 
 export default function (state = initialState, action) {
@@ -71,7 +62,6 @@ export default function (state = initialState, action) {
     default:
       return {
         ...state,
-       
       };
   }
 }
