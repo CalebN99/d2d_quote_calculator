@@ -7,7 +7,7 @@ import {
   GET_PROT_PRICE,
   UPDATE_PROT,
   GET_POLISH_PRICING,
-  UPDATE_POLISH
+  UPDATE_POLISH,
 } from "./types";
 
 export const getQuotes = () => (dispatch) => {
@@ -39,7 +39,7 @@ export const deleteQuote = (id) => (dispatch) => {
 };
 
 export const login = (item) => (dispatch) => {
-  console.log("Login")
+  console.log("Login");
   axios.post("accounts/login", item).then((res) =>
     dispatch({
       type: LOGIN,
@@ -47,7 +47,6 @@ export const login = (item) => (dispatch) => {
     })
   );
 };
-
 
 export const getProtPricing = () => (dispatch) => {
   axios.get("/pricing/protPricing").then((res) =>
@@ -59,7 +58,7 @@ export const getProtPricing = () => (dispatch) => {
 };
 
 export const updateProtPrice = (item) => (dispatch) => {
-  console.log("Login")
+  console.log("Login");
   axios.post(`/pricing/updateProt/${item.id}`, item).then((res) =>
     dispatch({
       type: UPDATE_PROT,
@@ -72,20 +71,18 @@ export const getPolishPricing = () => (dispatch) => {
   axios.get("/pricing/polishPricing").then((res) => {
     dispatch({
       type: GET_POLISH_PRICING,
-      payload: res.data
-    })
-  }
- )
- return true;
-}
+      payload: res.data,
+    });
+  });
+  return true;
+};
 
 export const updatePolishPricing = (item) => (dispatch) => {
-  axios.post(`/pricing/updatePolish/${item.id}`,item).then((res) => {
+  axios.post(`/pricing/updatePolish/${item.id}`, item).then((res) => {
     dispatch({
       type: UPDATE_POLISH,
       payload: res.data,
-    })
-  }
- )
- return true;
-}
+    });
+  });
+  return true;
+};

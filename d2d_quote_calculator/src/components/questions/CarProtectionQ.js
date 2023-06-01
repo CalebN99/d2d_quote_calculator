@@ -5,14 +5,10 @@ import paint from "../../assets/images/paint.jpg";
 import headlights from "../../assets/images/headlights.jpg";
 import allWindows from "../../assets/images/allWindows.jpg";
 
-
-
-
-
 function CarProtectionQ(props) {
   return (
     <div>
-      <h1>Select all items you would like protected</h1>
+      <h1>Select all items you would like ceramic coated</h1>
       <div className="imageSelection">
         <input
           type="checkbox"

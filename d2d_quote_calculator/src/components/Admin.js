@@ -463,7 +463,6 @@ class Admin extends Component {
               </div>
             </Modal.Body>
           </Modal>
-          <button onClick={this.csvCreate}>CSV</button>
         </div>
       </Provider>
     );

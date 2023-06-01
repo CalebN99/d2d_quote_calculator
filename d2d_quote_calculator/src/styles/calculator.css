@@ -94,7 +94,6 @@ h1 {
   @media only screen and (max-width: 500px) {
     .aLabel img {
       flex: 1 0 21%;
-  
       width: 23em !important;
       max-height: 13em;
       height: auto;

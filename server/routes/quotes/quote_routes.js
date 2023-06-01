@@ -89,7 +89,6 @@ router.post("/", (req, res) => {
 
       // Based of services included in the protection array in the body, adds costs from Protection Price
       // object of each service included to the final price
-
       if (req.body.protection.includes("wheels")) {
         price += protPricing.wheels;
       }
