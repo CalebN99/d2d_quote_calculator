@@ -31,6 +31,7 @@ class Calculator extends Component {
     };
   }
 
+
   handleSubmit = (event) => {
     console.log("Attempting create quote");
     const quote = {
@@ -45,6 +46,7 @@ class Calculator extends Component {
     };
 
     this.props.createQuote(quote);
+    this.loadQuote();
     event.preventDefault();
   };
 
@@ -84,8 +86,6 @@ class Calculator extends Component {
   };
 
   handleChange = () => (event) => {
-    console.log(event.target.checked);
-    console.log(event.target.name);
     this.setState({
       [event.target.name]: event.target.checked,
     });
@@ -202,7 +202,6 @@ class Calculator extends Component {
                   </div>
                 </div>
                 <button
-                  onClick={this.loadQuote}
                   type="submit"
                   className="btn btn-primary"
                 >

@@ -19,7 +19,7 @@ import "react-tabs/style/react-tabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/fontawesome-free-solid";
 import Modal from "react-bootstrap/Modal";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import toast, { Toaster } from 'react-hot-toast';
 
 class Admin extends Component {
@@ -41,6 +41,11 @@ class Admin extends Component {
       idDelete: "",
       csv: "",
     };
+  }
+
+  componentDidMount() {
+    let url = "http://" + window.location.host.toString() + "/accounts/login"
+    console.log(url)
   }
 
   openModal = (id) => (event) => {
