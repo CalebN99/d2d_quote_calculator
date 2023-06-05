@@ -42,6 +42,9 @@ class Home extends Component {
                 Main Website
               </a>
             </button>
+            <Link to="/admin" className="adminLink">
+              ADMIN
+            </Link>
           </div>
         </div>
       </Provider>

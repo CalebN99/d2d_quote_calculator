@@ -3,12 +3,36 @@
     height: 100vh;
 }
 
+.adminLink {
+    position: absolute;
+    color: white!important;
+    float: right;
+    bottom: 0;
+}
+
+
+
 .homeContainer {
     background-color: white;
     height: 100%;
     width: 75vw !important;
     margin: 0 auto;
 }
+
+@media only screen and (max-width: 500px) {
+    .homeContainer {
+        background-color: white;
+        height: 100%;
+        width: 90vw !important;
+        margin: 0 auto;
+    }
+
+    .logoImage {
+        width: 13em;
+        margin: 0 auto;
+        display: block;
+    }
+  }
 
 .logoImage {
     width: 15em;

@@ -7,24 +7,14 @@ import {
   GET_PROT_PRICE,
   UPDATE_PROT,
   GET_POLISH_PRICING,
-  UPDATE_POLISH
+  UPDATE_POLISH,
 } from "../actions/types";
 
-
 const initialState = {
-  quotes: false,
-  car: "Subaru",
   quote: 0,
   loggedIn: false,
   protPricing: [],
   polishPricing: [],
-  auth: (a = initialState) => {
-    if (a.user.user.length > 0) {
-      return {
-        loadingIn: true,
-      };
-    }
-  },
 };
 
 export default function (state = initialState, action) {
@@ -37,41 +27,39 @@ export default function (state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        loggedIn: action.payload
-      }
+        loggedIn: action.payload,
+      };
     case CREATE_QUOTE:
       return {
         ...state,
-        quote: action.payload
-      }  
+        quote: action.payload,
+      };
     case DELETE_QUOTE:
       return {
-        ...state
-      }  
+        ...state,
+      };
     case GET_PROT_PRICE:
       return {
         ...state,
-        protPricing: action.payload
-
-      } 
+        protPricing: action.payload,
+      };
     case UPDATE_PROT:
       return {
         ...state,
-        protPricing: action.payload
-      }  
+        protPricing: action.payload,
+      };
     case GET_POLISH_PRICING:
       return {
         ...state,
-        polishPricing: action.payload
-      }
+        polishPricing: action.payload,
+      };
     case UPDATE_POLISH:
       return {
-        ...state
-      } 
+        ...state,
+      };
     default:
       return {
         ...state,
-       
       };
   }
 }

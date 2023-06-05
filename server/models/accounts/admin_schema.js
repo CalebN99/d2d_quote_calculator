@@ -9,7 +9,6 @@ const Admin = mongoose.Schema({
     
 })
 
-
 // All user authentication code below retrieved from following link:
 // https://stackoverflow.com/questions/14588032/mongoose-password-hashing
 Admin.pre('save', function(next) {

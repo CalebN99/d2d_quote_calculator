@@ -80,12 +80,12 @@ function CarSizeQ(props) {
         <input
           type="radio"
           name="paint"
-          id="van"
+          id="passengerVan"
           className="paintSelect input-hidden"
           onChange={() => props.handleRadioButton("passengerVan")}
           checked={props.state.vehicleSize === "passengerVan"}
         />
-        <label for="van" className="aLabel">
+        <label for="passengerVan" className="aLabel">
           <p className="imageDesc">Passenger Van</p>
           <img src={van} alt="High paint defect" className="paintImage" />
         </label>

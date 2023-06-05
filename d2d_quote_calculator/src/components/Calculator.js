@@ -27,9 +27,10 @@ class Calculator extends Component {
       protection: [],
       name: "",
       email: "",
-      emailList: false
+      emailList: false,
     };
   }
+
 
   handleSubmit = (event) => {
     console.log("Attempting create quote");
@@ -41,10 +42,11 @@ class Calculator extends Component {
       swirls: this.state.swirls,
       scratches: this.state.scratches,
       protection: this.state.protection,
-      emailList: this.state.emailList
+      emailList: this.state.emailList,
     };
 
     this.props.createQuote(quote);
+    this.loadQuote();
     event.preventDefault();
   };
 
@@ -56,10 +58,6 @@ class Calculator extends Component {
 
   loadQuote = () => {
     this.setState({ loadQuote: true });
-
-    console.log(this.state.name);
-    console.log(this.state.email)
-    console.log(this.state.emailList);
 
     setTimeout(() => {
       this.setState({ loadQuote: false });
@@ -73,19 +71,21 @@ class Calculator extends Component {
 
   updateProtList = (value) => (event) => {
     if (event.target.checked) {
-      this.setState({protection: this.state.protection.concat([value])})
+      this.setState({ protection: this.state.protection.concat([value]) });
     } else {
-      this.setState({protection: this.state.protection.filter(function(val) {return val !== value})})
+      this.setState({
+        protection: this.state.protection.filter(function (val) {
+          return val !== value;
+        }),
+      });
     }
-  }
+  };
 
   closeModal = () => {
     this.setState({ modal: false });
   };
 
   handleChange = () => (event) => {
-    console.log(event.target.checked);
-    console.log(event.target.name);
     this.setState({
       [event.target.name]: event.target.checked,
     });
@@ -95,12 +95,17 @@ class Calculator extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
   changeQuestion = (num, curQuestion) => {
     this.setState({ question: curQuestion + num });
   };
 
+
+  /**
+   * Returns a specific question component based 
+   * on the question number in the state
+   */
   renderSwitch(param) {
     switch (param) {
       case 1:
@@ -161,7 +166,14 @@ class Calculator extends Component {
               <fieldset disabled={this.state.quote}>
                 <div className="form-group">
                   <label for="name">Name</label>
-                  <input name="name" type="text" className="form-control" id="name" required onChange={this.handleTextChange()}/>
+                  <input
+                    name="name"
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    required
+                    onChange={this.handleTextChange()}
+                  />
                 </div>
                 <div className="form-group">
                   <label for="email">Email</label>
@@ -190,7 +202,6 @@ class Calculator extends Component {
                   </div>
                 </div>
                 <button
-                  onClick={this.loadQuote}
                   type="submit"
                   className="btn btn-primary"
                 >
@@ -235,7 +246,7 @@ class Calculator extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  quotes: state.state
+  quotes: state.state,
 });
 
 export default connect(mapStateToProps, { getQuotes, createQuote })(Calculator);

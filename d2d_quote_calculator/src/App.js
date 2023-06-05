@@ -22,7 +22,6 @@ class App extends Component {
             <Route path="/" element={<Home />} />
             <Route path="/quote" element={<Calculator />} />
             <Route path="/admin" element={<Admin />} />
-
           </Routes>
       </Provider>
     )

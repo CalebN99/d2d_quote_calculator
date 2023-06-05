@@ -15,7 +15,9 @@
     "jquery": "^3.6.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
+    "react-csv": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-loading": "^2.0.3",
     "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
@@ -28,7 +30,6 @@
     "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "http://localhost:8000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

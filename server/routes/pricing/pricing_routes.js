@@ -5,12 +5,24 @@ const mongoose = require("mongoose");
 const PolishPrice = require("../../models/pricing/polish_schema");
 const ProtPrice = require("../../models/pricing/protection_schema");
 
+
+
 // Protection Pricing
+
+/**
+ * Get
+ * Retrieves the protection pricing object from the database
+ */
 router.get("/protPricing", (req, res) => {
   console.log("Grabbing Prot pricing");
 
   ProtPrice.findOne().then((items) => res.send(items));
 });
+
+/**
+ * Post
+ * Creates and sends Protection Price object to the database
+ */
 
 router.post("/protPricing", (req, res) => {
   const newProt = new ProtPrice({
@@ -25,25 +37,10 @@ router.post("/protPricing", (req, res) => {
   console.log("Created prot pricing");
 });
 
-router.put("/updateProt", (req, res) => {});
-
-// Polish Pricing
-
-router.post("/polishPricing", (req, res) => {
-  const newPolish = new PolishPrice({
-    size: req.body.size,
-    enhancement: req.body.enhancement,
-    oneStep: req.body.oneStep,
-    twoStep: req.body.twoStep,
-  });
-
-  newPolish.save().then((item) => res.json(item));
-  console.log("Created new polish pricing");
-});
-
-router.get("/polishPricing", (req, res) => {
-  PolishPrice.find().then((items) => res.json(items));
-});
+/**
+ * Post
+ * Searches for protection object by id in the database and updates it
+ */
 
 router.post("/updateProt/:id", (req, res) => {
 
@@ -65,6 +62,41 @@ router.post("/updateProt/:id", (req, res) => {
   )
 });
 
+
+
+// Polish Pricing
+
+/**
+ * Get
+ * Retrieves all Polish Price objects
+ */
+
+router.get("/polishPricing", (req, res) => {
+  PolishPrice.find().then((items) => res.json(items));
+});
+
+
+/**
+ * Post
+ * Creates and sends new Polish Price object to the database
+ */
+router.post("/polishPricing", (req, res) => {
+  const newPolish = new PolishPrice({
+    size: req.body.size,
+    enhancement: req.body.enhancement,
+    oneStep: req.body.oneStep,
+    twoStep: req.body.twoStep,
+  });
+
+  newPolish.save().then((item) => res.json(item));
+  console.log("Created new polish pricing");
+});
+
+
+/**
+ * Post
+ * Finds Polish Price object by id in database and updates it
+ */
 router.post("/updatePolish/:id", (req, res) => {
 
   PolishPrice.findByIdAndUpdate( req.params.id, {
@@ -82,5 +114,7 @@ router.post("/updatePolish/:id", (req, res) => {
   }
   )
 });
+
+
 
 module.exports = router;
