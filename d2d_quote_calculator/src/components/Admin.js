@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/fontawesome-free-solid";
 import Modal from "react-bootstrap/Modal";
 import { CSVLink } from "react-csv";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 class Admin extends Component {
   constructor(props) {
@@ -40,12 +40,8 @@ class Admin extends Component {
       modal: false,
       idDelete: "",
       csv: "",
+      reload: 1
     };
-  }
-
-  componentDidMount() {
-    let url = "http://" + window.location.host.toString() + "/accounts/login"
-    console.log(url)
   }
 
   openModal = (id) => (event) => {
@@ -66,10 +62,12 @@ class Admin extends Component {
       allWindows: this.state.allWindows,
       trimLights: this.state.trimLights,
     };
-    
+
     this.props.updateProtPrice(updatedPrice);
     this.props.getProtPricing();
-    toast.success('Updated Protection Pricing');
+    toast.success("Updated Protection Pricing");
+
+    this.setState({reload: Math.random()})
     event.preventDefault();
   };
 
@@ -81,12 +79,12 @@ class Admin extends Component {
       twoStep: this.state.twoStep,
     };
 
-  
-  
-    this.props.updatePolishPricing(updatedPrice)
+    this.props.updatePolishPricing(updatedPrice);
     this.props.getPolishPricing();
-    toast.success('Updated Polish Pricing');
+    toast.success("Updated Polish Pricing");
 
+    
+    this.setState({reload: Math.random()})
     event.preventDefault();
   };
 
@@ -100,8 +98,6 @@ class Admin extends Component {
   };
 
   deleteQuote = (id) => (event) => {
-    console.log("delete quote: " + id);
-
     this.props.deleteQuote(id);
     this.props.state.quotes = this.props.state.quotes.filter(
       (e) => e._id !== id
@@ -111,7 +107,6 @@ class Admin extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log("Attempting login");
     const account = {
       username: this.state.username,
       password: this.state.password,
@@ -123,12 +118,10 @@ class Admin extends Component {
     setTimeout(() => {
       if (this.props.state.loggedIn) {
         this.props.getQuotes();
-        console.log("receivedQuotes");
       }
-    }, 1500);
+    }, 1250);
 
     setTimeout(() => {
-      console.log("yo");
       console.log(this.props.state.protPricing);
       this.setState({ wheels: this.props.state.protPricing.wheels });
       this.setState({ allWindows: this.props.state.protPricing.allWindows });
@@ -137,9 +130,7 @@ class Admin extends Component {
       this.setState({ trimLights: this.props.state.protPricing.trimLights });
 
       this.csvCreate();
-    }, 2000);
-
-    // this.setState({wheels: this.props.state.protPrice})
+    }, 1000);
 
     event.preventDefault();
   };
@@ -186,7 +177,6 @@ class Admin extends Component {
     this.setState({ csv: csvString });
   };
 
-  //10
   render() {
     return (
       <Provider className="provider" store={store}>
@@ -227,7 +217,6 @@ class Admin extends Component {
               </div>
             ) : (
               <div>
-                
                 <Tabs className="tab-container">
                   <TabList>
                     <Tab>Quotes</Tab>
@@ -240,13 +229,16 @@ class Admin extends Component {
 
                   <TabPanel>
                     <div className="quote_header">
-                    <h2>Quotes</h2>
-                   
-                   <CSVLink className="csv_link" data={this.state.csv}> <button className="btn btn-primary">
-                     Generate CSV
-                     </button></CSVLink>
+                      <h2>Quotes</h2>
+
+                      <CSVLink className="csv_link" data={this.state.csv}>
+                        {" "}
+                        <button className="btn btn-primary">
+                          Generate CSV
+                        </button>
+                      </CSVLink>
                     </div>
-                   
+
                     <table className="table">
                       <thead>
                         <tr>
@@ -273,7 +265,7 @@ class Admin extends Component {
                           />
                         </div>
                       ) : (
-                        <tbody>
+                        <tbody className="table_body">
                           {this.props.state.quotes.map((quote) => (
                             <tr>
                               <td>

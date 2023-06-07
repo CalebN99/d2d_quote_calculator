@@ -73,6 +73,22 @@
     height: fit-content;
 }
 
+thead tr th{
+    position: sticky;
+    top: 0;
+    background-color: white !important;
+}
+thead {
+    background-color: white !important;
+
+}
+.table {
+    display: block;
+    height: 40em !important;
+    overflow: scroll !important;
+    
+}
+
 
 
 

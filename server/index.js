@@ -40,10 +40,8 @@ app.use(express.static("../d2d_quote_calculator/build"));
 
 //Connect to Database
 
+let port = process.env.PORT || 80
 
-
-
-
-app.listen(8000, () => {
+app.listen(port, () => {
     console.log("Server listening on port 8000")
 });

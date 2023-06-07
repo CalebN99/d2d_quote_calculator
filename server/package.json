@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "16.15.0"
   },
   "author": "Caleb Norris",
   "license": "ISC",
@@ -16,7 +19,9 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.2",
+    "netlify-lambda": "^2.0.16",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "serverless-http": "^3.2.0"
   }
 }
