@@ -119,7 +119,7 @@ class Admin extends Component {
       if (this.props.state.loggedIn) {
         this.props.getQuotes();
       }
-    }, 1250);
+    }, 2000);
 
     setTimeout(() => {
       console.log(this.props.state.protPricing);
@@ -130,7 +130,7 @@ class Admin extends Component {
       this.setState({ trimLights: this.props.state.protPricing.trimLights });
 
       this.csvCreate();
-    }, 1000);
+    }, 2000);
 
     event.preventDefault();
   };
