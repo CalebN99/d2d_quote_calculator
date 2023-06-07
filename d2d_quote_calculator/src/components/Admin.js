@@ -94,7 +94,7 @@ class Admin extends Component {
     this.setState({ oneStep: pricing[0].oneStep });
     this.setState({ twoStep: pricing[0].twoStep });
     this.setState({ id: pricing[0]._id });
-    console.log(this.state.csv);
+    console.log("CSV: " + this.state.csv);
   };
 
   deleteQuote = (id) => (event) => {
