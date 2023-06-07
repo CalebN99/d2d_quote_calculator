@@ -94,7 +94,6 @@ class Admin extends Component {
     this.setState({ oneStep: pricing[0].oneStep });
     this.setState({ twoStep: pricing[0].twoStep });
     this.setState({ id: pricing[0]._id });
-    console.log("CSV: " + this.state.csv);
   };
 
   deleteQuote = (id) => (event) => {
@@ -129,7 +128,7 @@ class Admin extends Component {
       this.setState({ trimLights: this.props.state.protPricing.trimLights });
 
       this.csvCreate();
-    }, 5000);
+    }, 2000);
 
     event.preventDefault();
   };
