@@ -128,7 +128,7 @@ class Admin extends Component {
       this.setState({ trimLights: this.props.state.protPricing.trimLights });
 
       this.csvCreate();
-    }, 2500);
+    }, 3000);
 
     event.preventDefault();
   };
