@@ -31,7 +31,6 @@ class Calculator extends Component {
     };
   }
 
-
   handleSubmit = (event) => {
     console.log("Attempting create quote");
     const quote = {
@@ -71,6 +70,16 @@ class Calculator extends Component {
 
   updateProtList = (value) => (event) => {
     if (event.target.checked) {
+      if (value === "allWindows")  {
+        console.log("allWindows");
+        let newProt = this.state.protection.filter(item => item !== "windshield");
+        this.setState({protection: newProt.concat([value])})
+        return;
+      } else if (value === "windshield") {
+        let newProt = this.state.protection.filter(item => item !== "allWindows");
+        this.setState({protection: newProt.concat([value])});
+        return;
+      }
       this.setState({ protection: this.state.protection.concat([value]) });
     } else {
       this.setState({
@@ -86,10 +95,26 @@ class Calculator extends Component {
   };
 
   handleChange = () => (event) => {
+    if (event.target.name === "perfPaint") {
+      console.log("perfPaint")
+      this.setState({
+        swirls: false,
+        scratches: false,
+        waterSpots: false,
+        perfPaint: true
+      });
+      return;
+    } else if (event.target.name === "swirls" || event.target.name === "scratches" || event.target.name === "waterSpots") {
+      this.setState({perfPaint: false, [event.target.name]: event.target.checked})
+    }
+
     this.setState({
       [event.target.name]: event.target.checked,
     });
   };
+
+
+
 
   handleTextChange = () => (event) => {
     this.setState({
@@ -101,9 +126,8 @@ class Calculator extends Component {
     this.setState({ question: curQuestion + num });
   };
 
-
   /**
-   * Returns a specific question component based 
+   * Returns a specific question component based
    * on the question number in the state
    */
   renderSwitch(param) {
@@ -178,7 +202,7 @@ class Calculator extends Component {
                 <div className="form-group">
                   <label for="email">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
                     name="email"
                     id="email"
@@ -201,10 +225,7 @@ class Calculator extends Component {
                     </label>
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                >
+                <button type="submit" className="btn btn-primary">
                   Get Quote
                 </button>
               </fieldset>

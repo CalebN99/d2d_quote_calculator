@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
         size = "small";
         break;
       case "porsche":
-        size = "small";
+        size = "medium";
         break;
       case "tesla":
         size = "medium";

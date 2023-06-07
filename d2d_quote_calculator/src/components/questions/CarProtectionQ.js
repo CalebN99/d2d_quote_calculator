@@ -16,7 +16,7 @@ function CarProtectionQ(props) {
           id="wheels"
           className="paintSelect input-hidden"
           onChange={props.updateProtList("wheels")}
-          checked={props.state.protection.indexOf("wheels") > -1}
+          checked={props.state.protection.includes("wheels")}
         />
         <label for="wheels" className="aLabel">
           <p className="imageDesc">Wheels</p>
@@ -29,7 +29,7 @@ function CarProtectionQ(props) {
           id="windshield"
           className="paintSelect input-hidden"
           onChange={props.updateProtList("windshield")}
-          checked={props.state.protection.indexOf("windshield") > -1}
+          checked={props.state.protection.includes("windshield")}
         />
         <label for="windshield" className="aLabel">
           <p className="imageDesc">Windshield</p>
@@ -42,7 +42,7 @@ function CarProtectionQ(props) {
           id="allWindows"
           className="paintSelect input-hidden"
           onChange={props.updateProtList("allWindows")}
-          checked={props.state.protection.indexOf("allWindows") > -1}
+          checked={props.state.protection.includes("allWindows")}
         />
         <label for="allWindows" className="aLabel">
           <p className="imageDesc">All Windows</p>
@@ -55,7 +55,7 @@ function CarProtectionQ(props) {
           id="paint"
           className="paintSelect input-hidden"
           onChange={props.updateProtList("paint")}
-          checked={props.state.protection.indexOf("paint") > -1}
+          checked={props.state.protection.includes("paint")}
         />
         <label for="paint" className="aLabel">
           <p className="imageDesc">Paint</p>
@@ -68,7 +68,7 @@ function CarProtectionQ(props) {
           id="trimLights"
           className="paintSelect input-hidden"
           onChange={props.updateProtList("trimLights")}
-          checked={props.state.protection.indexOf("trimLights") > -1}
+          checked={props.state.protection.includes("trimLights")}
         />
         <label for="trimLights" className="aLabel">
           <p className="imageDesc">Trim & Lights</p>
