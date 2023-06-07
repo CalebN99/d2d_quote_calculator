@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
+mongoose.connect("mongodb+srv://d2d4321:c4ihYnNfZJajtyZ4@dirty2dreamy.va8o3th.mongodb.net/rest", {useNewUrlParser: true}, () => {
     console.log("Successful Connection to MongoDB")
 })
 
