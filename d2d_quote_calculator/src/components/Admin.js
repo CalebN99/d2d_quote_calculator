@@ -90,11 +90,11 @@ class Admin extends Component {
 
   tabSwitch = (size) => (event) => {
     let pricing = this.props.state.polishPricing.filter((e) => e.size === size);
-    console.log(pricing[0].enhancement);
     this.setState({ enhancement: pricing[0].enhancement });
     this.setState({ oneStep: pricing[0].oneStep });
     this.setState({ twoStep: pricing[0].twoStep });
     this.setState({ id: pricing[0]._id });
+    console.log(this.state.csv);
   };
 
   deleteQuote = (id) => (event) => {
@@ -122,7 +122,6 @@ class Admin extends Component {
     }, 2000);
 
     setTimeout(() => {
-      console.log(this.props.state.protPricing);
       this.setState({ wheels: this.props.state.protPricing.wheels });
       this.setState({ allWindows: this.props.state.protPricing.allWindows });
       this.setState({ windshield: this.props.state.protPricing.windshield });
@@ -231,7 +230,7 @@ class Admin extends Component {
                     <div className="quote_header">
                       <h2>Quotes</h2>
 
-                      <CSVLink className="csv_link" data={this.state.csv}>
+                      <CSVLink className="csv_link" data={this.state.csv} onClick={() => console.log(this.state.csv)}>
                         {" "}
                         <button className="btn btn-primary" onClick={() => console.log(this.state.csv)}>
                           Generate CSV
