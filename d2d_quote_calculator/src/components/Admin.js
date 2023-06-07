@@ -147,10 +147,6 @@ class Admin extends Component {
   };
 
   csvCreate = (event) => {
-    if (this.props.state.quotes.length <= 0) {
-      this.csvCreate();
-      return;
-    }
     const csvString = [
       [
         "date",
@@ -237,7 +233,7 @@ class Admin extends Component {
 
                       <CSVLink className="csv_link" data={this.state.csv}>
                         {" "}
-                        <button className="btn btn-primary">
+                        <button className="btn btn-primary" onClick={() => console.log(this.state.csv)}>
                           Generate CSV
                         </button>
                       </CSVLink>
