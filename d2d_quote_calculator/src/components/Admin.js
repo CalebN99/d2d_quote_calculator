@@ -147,6 +147,10 @@ class Admin extends Component {
   };
 
   csvCreate = (event) => {
+    if (this.props.state.quotes.length <= 0) {
+      this.csvCreate();
+      return;
+    }
     const csvString = [
       [
         "date",
