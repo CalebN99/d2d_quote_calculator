@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9663b1b2.css",
+    "main.js": "/static/js/main.5944d105.js",
+    "static/js/787.96c8961b.chunk.js": "/static/js/787.96c8961b.chunk.js",
+    "static/media/Porsche.png": "/static/media/Porsche.717f57b9c908665672f0.png",
+    "static/media/swirls.png": "/static/media/swirls.7c4cdd42d6f5aea9dfd9.png",
+    "static/media/van.png": "/static/media/van.20fe119564b968531eab.png",
+    "static/media/paint.jpg": "/static/media/paint.9e72ae65ad476818d93c.jpg",
+    "static/media/allWindows.jpg": "/static/media/allWindows.ec25cb700acb7f8284a6.jpg",
+    "static/media/wheels.png": "/static/media/wheels.83f07e32d57eda9697ce.png",
+    "static/media/truck.png": "/static/media/truck.16d3a62d667bf2edc252.png",
+    "static/media/smartcar.png": "/static/media/smartcar.e999ffe237a02c8094c3.png",
+    "static/media/suv.png": "/static/media/suv.8ca41e5304f405b4ecf4.png",
+    "static/media/headlights.jpg": "/static/media/headlights.d7957f9e2147216cac27.jpg",
+    "static/media/tesla.png": "/static/media/tesla.18ae7ed1825a92de0bbc.png",
+    "static/media/waterspots.jpg": "/static/media/waterspots.1fb6b03b06e61e840740.jpg",
+    "static/media/scratches.jpg": "/static/media/scratches.481b8a5b1f7ce893c1c3.jpg",
+    "static/media/camaro.jpg": "/static/media/camaro.552b5397b672b313d878.jpg",
+    "static/media/windshield.jpg": "/static/media/windshield.b15610a2319c4afa980d.jpg",
+    "static/media/logo.webp": "/static/media/logo.d5758453dc792d13ae88.webp",
+    "index.html": "/index.html",
+    "main.9663b1b2.css.map": "/static/css/main.9663b1b2.css.map",
+    "main.5944d105.js.map": "/static/js/main.5944d105.js.map",
+    "787.96c8961b.chunk.js.map": "/static/js/787.96c8961b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9663b1b2.css",
+    "static/js/main.5944d105.js"
+  ]
+}
