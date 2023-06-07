@@ -16,6 +16,14 @@ router.get("/", (req, res) => {
 });
 
 /**
+ * Get
+ * Retrieves all Quote objects from the database
+ */
+router.get("/quote", (req, res) => {
+  res.send("Hello")
+});
+
+/**
  * Delete
  * Finds Quote object by id and deletes it
  */
