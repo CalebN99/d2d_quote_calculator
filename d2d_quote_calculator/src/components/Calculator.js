@@ -27,6 +27,7 @@ class Calculator extends Component {
       protection: [],
       name: "",
       email: "",
+      number: 0,
       emailList: false,
     };
   }
@@ -36,6 +37,7 @@ class Calculator extends Component {
     const quote = {
       name: this.state.name,
       email: this.state.email,
+      number: this.state.number,
       carSize: this.state.vehicleSize,
       waterSpots: this.state.waterSpots,
       swirls: this.state.swirls,
@@ -207,6 +209,19 @@ class Calculator extends Component {
                     name="email"
                     id="email"
                     placeholder="jonathan@dirty2dreamy.com..."
+                    required
+                    onChange={this.handleTextChange()}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label for="number">Number</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="number"
+                    id="number"
+                    placeholder="2539296472"
                     required
                     onChange={this.handleTextChange()}
                   />

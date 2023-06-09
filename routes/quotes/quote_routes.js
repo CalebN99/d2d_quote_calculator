@@ -70,7 +70,6 @@ router.post("/", (req, res) => {
 
     // Pulls Polish Price object based on the size set above
     PolishPrice.findOne({ size: size }).then((items) => {
-      console.log(items);
       let polishLevel = 0;
 
       // Calculates level of polish based on variables in the body
@@ -78,7 +77,6 @@ router.post("/", (req, res) => {
       if (req.body.swirls) polishLevel += 1;
       if (req.body.scratches) polishLevel += 1;
 
-      console.log("Polish Level: " + polishLevel);
 
       // Based off the polish level above, adds cost of service from the Polish Price object to final price
       switch (polishLevel) {
@@ -92,8 +90,6 @@ router.post("/", (req, res) => {
           price += items.twoStep;
           break;
       }
-
-      console.log(req.body.protection);
 
       // Based of services included in the protection array in the body, adds costs from Protection Price
       // object of each service included to the final price
@@ -129,12 +125,14 @@ router.post("/", (req, res) => {
         );
       }
 
-      console.log("Price: $" + price);
+
+      console.log("Number:" + req.body.number);
 
       // Creates new Quote object, saves it to database and returns it to the front-end
       const newQuote = new Quote({
         name: req.body.name,
         email: req.body.email,
+        number: req.body.number,
         carSize: req.body.carSize,
         waterspots: req.body.waterSpots,
         swirls: req.body.swirls,

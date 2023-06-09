@@ -151,6 +151,7 @@ class Admin extends Component {
         "name",
         "carSize",
         "email",
+        "number",
         "emailList",
         "protection",
         "scratches",
@@ -163,6 +164,7 @@ class Admin extends Component {
         item.name,
         item.carSize,
         item.email,
+        item.number,
         item.emailList,
         item.protection.join(", "),
         item.scratches,
@@ -244,7 +246,8 @@ class Admin extends Component {
                           <th scope="col">Date</th>
                           <th scope="col">Name</th>
                           <th scope="col">Email</th>
-                          <th scope="col">Email List</th>
+                          <th scope="col">Number</th>
+                          <th scope="col">E List</th>
                           <th scope="col">Car Size</th>
                           <th scope="col">Waterspots</th>
                           <th scope="col">Swirls</th>
@@ -278,6 +281,7 @@ class Admin extends Component {
                               </th>
                               <td>{quote.name}</td>
                               <td>{quote.email}</td>
+                              <td>{quote.number}</td>
                               <td>
                                 {this.autoCapitalize(
                                   quote.emailList.toString()
