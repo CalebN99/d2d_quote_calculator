@@ -11,7 +11,7 @@ import {
 } from "./types";
 
 export const getQuotes = () => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/quotes";
+  let url = "https://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/quotes";
 
   axios.get(url).then((res) =>
     dispatch({
@@ -22,7 +22,7 @@ export const getQuotes = () => (dispatch) => {
 };
 
 export const createQuote = (item) => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/quotes";
+  let url = "https://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/quotes";
 
   axios.post(url, item).then((res) =>
     dispatch({
@@ -33,7 +33,7 @@ export const createQuote = (item) => (dispatch) => {
 };
 
 export const deleteQuote = (id) => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/quotes/${id}/delete`;
+  let url = "https://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/quotes/${id}/delete`;
   axios.delete(url).then((res) =>
     dispatch({
       type: DELETE_QUOTE,
@@ -43,7 +43,7 @@ export const deleteQuote = (id) => (dispatch) => {
 };
 
 export const login = (item) => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/accounts/login";
+  let url = "https://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/accounts/login";
   axios.post(url, item).then((res) =>
     dispatch({
       type: LOGIN,
@@ -53,7 +53,7 @@ export const login = (item) => (dispatch) => {
 };
 
 export const getProtPricing = () => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/pricing/protPricing";
+  let url = "https://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/pricing/protPricing";
   axios.get(url).then((res) =>
     dispatch({
       type: GET_PROT_PRICE,
@@ -63,7 +63,7 @@ export const getProtPricing = () => (dispatch) => {
 };
 
 export const updateProtPrice = (item) => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/pricing/updateProt/${item.id}`;
+  let url = "https://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/pricing/updateProt/${item.id}`;
   axios.post(url, item).then((res) =>
     dispatch({
       type: UPDATE_PROT,
@@ -73,7 +73,7 @@ export const updateProtPrice = (item) => (dispatch) => {
 };
 
 export const getPolishPricing = () => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/pricing/polishPricing";
+  let url = "https://" + window.location.host.toString() + "/d0KWTCBB1EwHBuBT/pricing/polishPricing";
   axios.get(url).then((res) => {
     dispatch({
       type: GET_POLISH_PRICING,
@@ -84,7 +84,7 @@ export const getPolishPricing = () => (dispatch) => {
 };
 
 export const updatePolishPricing = (item) => (dispatch) => {
-  let url = "http://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/pricing/updatePolish/${item.id}`;
+  let url = "https://" + window.location.host.toString() + `/d0KWTCBB1EwHBuBT/pricing/updatePolish/${item.id}`;
 
   axios.post(url, item).then((res) => {
     dispatch({
