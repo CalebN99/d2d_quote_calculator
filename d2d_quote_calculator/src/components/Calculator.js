@@ -208,7 +208,7 @@ class Calculator extends Component {
                     className="form-control"
                     name="email"
                     id="email"
-                    placeholder="jonathan@dirty2dreamy.com..."
+                    placeholder="example@gmail.com"
                     required
                     onChange={this.handleTextChange()}
                   />
@@ -217,11 +217,11 @@ class Calculator extends Component {
                 <div className="form-group">
                   <label for="number">Number</label>
                   <input
-                    type="number"
+                    type="text"
                     className="form-control"
                     name="number"
                     id="number"
-                    placeholder="2539296472"
+                    placeholder="555-555-5555"
                     required
                     onChange={this.handleTextChange()}
                   />

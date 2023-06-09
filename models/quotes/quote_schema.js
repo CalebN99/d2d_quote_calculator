@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Quote = mongoose.Schema({
     name: {type: String, required: true},
     email: {type: String, required: true},
-    number: {type: Number, required: true},
+    number: {type: String, required: true},
     carSize: {type: String, required: true},
     waterspots: {type: Boolean, required: true, default: false},
     swirls: {type: Boolean, required: true, default: false},
