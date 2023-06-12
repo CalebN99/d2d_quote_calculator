@@ -43,7 +43,7 @@ export const deleteQuote = (id) => (dispatch) => {
 };
 
 export const login = (item) => (dispatch) => {
-  let url = "https://" + window.location.host.toString() + "/" + process.env.API_KEY + "/accounts/login";
+  let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/login";
   axios.post(url, item).then((res) =>
     dispatch({
       type: LOGIN,
