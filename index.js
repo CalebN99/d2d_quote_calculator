@@ -31,9 +31,9 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
     console.log("Successful Connection to MongoDB")
 })
 
-app.use('/d0KWTCBB1EwHBuBT/quotes', quoteRoute);
-app.use('/d0KWTCBB1EwHBuBT/accounts', accountRoute);
-app.use('/d0KWTCBB1EwHBuBT/pricing', pricingRoute);
+app.use('/' + process.env.API_KEY + '/quotes', quoteRoute);
+app.use('/' + process.env.API_KEY + '/accounts', accountRoute);
+app.use('/' + process.env.API_KEY + '/pricing', pricingRoute);
 
 
 app.use(express.static("./d2d_quote_calculator/build"));
