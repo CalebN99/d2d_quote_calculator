@@ -11,6 +11,7 @@ const accountRoute = require('./routes/accounts/admin_routes');
 const pricingRoute = require('./routes/pricing/pricing_routes');
 const bodyParser = require("body-parser");
 
+const hi = "";
 const cors=require("cors");
 const corsOptions ={
    origin:'*', 
