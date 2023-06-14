@@ -19,6 +19,15 @@ const corsOptions ={
    optionSuccessStatus:200,
 }
 
+app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    } else {
+      next();
+    }
+  });
+
+
 app.use(cors(corsOptions)) 
 
 app.use(bodyParser.json())
