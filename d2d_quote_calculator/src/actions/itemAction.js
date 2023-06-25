@@ -8,6 +8,7 @@ import {
   UPDATE_PROT,
   GET_POLISH_PRICING,
   UPDATE_POLISH,
+  CREATE_ACCOUNT
 } from "./types";
 
 export const getQuotes = () => (dispatch) => {
@@ -44,9 +45,22 @@ export const deleteQuote = (id) => (dispatch) => {
 
 export const login = (item) => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/login";
+
+
   axios.post(url, item).then((res) =>
     dispatch({
       type: LOGIN,
+      payload: res.data,
+    })
+  );
+};
+
+export const createAccount = (item) => (dispatch) => {
+  let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/login";
+
+  axios.post(url, item).then((res) =>
+    dispatch({
+      type: CREATE_ACCOUNT,
       payload: res.data,
     })
   );
@@ -74,6 +88,7 @@ export const updateProtPrice = (item) => (dispatch) => {
 
 export const getPolishPricing = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() +  "/" + process.env.REAT_APP_API_KEY + "/pricing/polishPricing";
+
   axios.get(url).then((res) => {
     dispatch({
       type: GET_POLISH_PRICING,

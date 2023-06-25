@@ -11,7 +11,6 @@ const accountRoute = require('./routes/accounts/admin_routes');
 const pricingRoute = require('./routes/pricing/pricing_routes');
 const bodyParser = require("body-parser");
 
-const hi = "";
 const cors=require("cors");
 const corsOptions ={
    origin:'*', 
@@ -44,6 +43,7 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
 app.use('/' + process.env.API_KEY + '/quotes', quoteRoute);
 app.use('/' + process.env.API_KEY + '/accounts', accountRoute);
 app.use('/' + process.env.API_KEY + '/pricing', pricingRoute);
+
 
 
 app.use(express.static("./d2d_quote_calculator/build"));

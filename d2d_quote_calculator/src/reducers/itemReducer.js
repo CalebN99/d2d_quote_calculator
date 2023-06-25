@@ -8,6 +8,7 @@ import {
   UPDATE_PROT,
   GET_POLISH_PRICING,
   UPDATE_POLISH,
+  CREATE_ACCOUNT
 } from "../actions/types";
 
 const initialState = {
@@ -29,6 +30,10 @@ export default function (state = initialState, action) {
         ...state,
         loggedIn: action.payload,
       };
+    case CREATE_ACCOUNT:
+      return {
+        ...state
+      }
     case CREATE_QUOTE:
       return {
         ...state,

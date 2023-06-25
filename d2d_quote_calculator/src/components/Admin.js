@@ -9,6 +9,7 @@ import {
   updateProtPrice,
   getPolishPricing,
   updatePolishPricing,
+  createAccount
 } from "../actions/itemAction";
 import store from "../store";
 import logo from "../assets/images/logo.webp";
@@ -40,7 +41,7 @@ class Admin extends Component {
       modal: false,
       idDelete: "",
       csv: "",
-      reload: 1
+      reload: 1,
     };
   }
 
@@ -70,6 +71,17 @@ class Admin extends Component {
     this.setState({reload: Math.random()})
     event.preventDefault();
   };
+
+  createNewAccount = () => (event) => {
+    let newAccount = {
+      username: this.state.username,
+      password: this.state.password
+    };
+
+    this.props.createAccount(newAccount);
+
+    event.preventDefault();
+  }
 
   updatePolishPrice = () => (event) => {
     let updatedPrice = {
@@ -225,6 +237,8 @@ class Admin extends Component {
                     <Tab onClick={this.tabSwitch("large")}>Large</Tab>
                     <Tab onClick={this.tabSwitch("xLarge")}>Extra Large</Tab>
                     <Tab>Protection</Tab>
+                    <Tab>Settings</Tab>
+
                   </TabList>
 
                   <TabPanel>
@@ -238,6 +252,7 @@ class Admin extends Component {
                         </button>
                       </CSVLink>
                     </div>
+                    <hr/>
 
                     <table className="table">
                       <thead>
@@ -309,9 +324,19 @@ class Admin extends Component {
                       )}
                     </table>
                   </TabPanel>
-                  {this.props.state.polishPricing.map((polish) => (
+                  {this.props.state.polishPricing.map((polish) =>  
+                  
+                  { 
+
+                    let tabTitle = polish.size;
+                    if (tabTitle === "xlarge") {
+                      tabTitle = "Extra Large";
+                    }
+                    
+                    return (
                     <TabPanel>
-                      <h2>{this.autoCapitalize(polish.size)}</h2>
+                      <h2>{this.autoCapitalize(tabTitle)}</h2>
+                      <hr/>
                       <div className="sizePriceForm">
                         <form>
                           <div class="form-group">
@@ -357,9 +382,10 @@ class Admin extends Component {
                         <Toaster />
                       </div>
                     </TabPanel>
-                  ))}
+                  )})}
                   <TabPanel>
                     <h2>Protection</h2>
+                    <hr/>
                     <div className="sizePriceForm">
                       <form>
                         <div className="row">
@@ -435,6 +461,47 @@ class Admin extends Component {
                       <Toaster />
                     </div>
                   </TabPanel>
+                  <TabPanel>
+                    <h2>Settings</h2>
+                   <hr/>
+                    <div className="sizePriceForm">
+                      <h5>Create Account</h5>
+                      <form>
+                        <div className="row">
+                          <div className="col">
+                            <label for="wheels">Username:</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="username"
+                              id="username"
+                              placeholder="Username..."
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                          <div className="col">
+                            <label for="windshield">Password:</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="password"
+                              id="password"
+                              placeholder="Password..."
+                              onChange={this.handleTextChange()}
+                            />
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={this.createNewAccount()}
+                          className="btn btn-primary"
+                        >
+                          Create
+                        </button>
+                      </form>
+                      <Toaster />
+                    </div>
+                  </TabPanel>
                 </Tabs>
               </div>
             )}
@@ -480,4 +547,5 @@ export default connect(mapStateToProps, {
   updateProtPrice,
   getPolishPricing,
   updatePolishPricing,
+  createAccount
 })(Admin);

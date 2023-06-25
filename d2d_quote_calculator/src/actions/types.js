@@ -6,3 +6,4 @@ export const GET_PROT_PRICE = "GET_PROT_PRICE";
 export const UPDATE_PROT = "UPDATE_PROT";
 export const GET_POLISH_PRICING = "GET_POLISH_PRICING";
 export const UPDATE_POLISH = "UPDATE_POLISH";
+export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
