@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.9663b1b2.css",
+    "main.css": "/static/css/main.ae774053.css",
     "main.js": "/static/js/main.0b8346e5.js",
     "static/js/787.96c8961b.chunk.js": "/static/js/787.96c8961b.chunk.js",
     "static/media/Porsche.png": "/static/media/Porsche.717f57b9c908665672f0.png",
@@ -20,12 +20,12 @@
     "static/media/windshield.jpg": "/static/media/windshield.b15610a2319c4afa980d.jpg",
     "static/media/logo.webp": "/static/media/logo.d5758453dc792d13ae88.webp",
     "index.html": "/index.html",
-    "main.9663b1b2.css.map": "/static/css/main.9663b1b2.css.map",
+    "main.ae774053.css.map": "/static/css/main.ae774053.css.map",
     "main.0b8346e5.js.map": "/static/js/main.0b8346e5.js.map",
     "787.96c8961b.chunk.js.map": "/static/js/787.96c8961b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9663b1b2.css",
+    "static/css/main.ae774053.css",
     "static/js/main.0b8346e5.js"
   ]
 }
