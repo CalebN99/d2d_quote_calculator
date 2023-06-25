@@ -56,7 +56,7 @@ export const login = (item) => (dispatch) => {
 };
 
 export const createAccount = (item) => (dispatch) => {
-  let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/login";
+  let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/generateUser";
 
   axios.post(url, item).then((res) =>
     dispatch({
