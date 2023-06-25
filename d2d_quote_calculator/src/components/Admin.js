@@ -329,7 +329,7 @@ class Admin extends Component {
                   { 
 
                     let tabTitle = polish.size;
-                    if (tabTitle === "xlarge") {
+                    if (tabTitle === "xLarge") {
                       tabTitle = "Extra Large";
                     }
                     
