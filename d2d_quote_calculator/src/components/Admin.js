@@ -79,7 +79,7 @@ class Admin extends Component {
     };
 
     this.props.createAccount(newAccount);
-
+    toast.success("Created new account: " + this.state.username);
     event.preventDefault();
   }
 
