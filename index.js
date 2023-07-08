@@ -28,9 +28,7 @@ app.use((req, res, next) => {
 
 
 app.use(cors(corsOptions)) 
-
 app.use(bodyParser.json())
-
 app.use(bodyParser.urlencoded({
     extended: false
 }))
@@ -44,14 +42,10 @@ app.use('/' + process.env.API_KEY + '/quotes', quoteRoute);
 app.use('/' + process.env.API_KEY + '/accounts', accountRoute);
 app.use('/' + process.env.API_KEY + '/pricing', pricingRoute);
 
-
-
 app.use(express.static("./d2d_quote_calculator/build"));
 
 //Connect to Database
-
 let port = process.env.PORT || 8000
-
 app.listen(port, () => {
     console.log("Server listening on port 8000")
 });

@@ -349,7 +349,7 @@ class Admin extends Component {
                                 )}
                               </td>
 
-                              <td>{quote.carSize}</td>
+                              <td className = "eListTD">{quote.carSize}</td>
                               <td>
                                 {this.autoCapitalize(
                                   quote.waterspots.toString()

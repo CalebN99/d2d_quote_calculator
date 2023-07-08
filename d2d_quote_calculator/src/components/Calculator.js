@@ -35,6 +35,10 @@ class Calculator extends Component {
 
   handleSubmit = (event) => {
     console.log("Attempting create quote");
+    let ref;
+    if (document.referrer) ref = document.referrer
+    else ref = "none"
+    console.log(document.referrer)
     const quote = {
       name: this.state.name,
       email: this.state.email,
@@ -46,7 +50,7 @@ class Calculator extends Component {
       protection: this.state.protection,
       emailList: this.state.emailList,
       contactMe: this.state.contactMe,
-      referer: document.referrer,
+      referer: ref,
       notes: ""
     };
 

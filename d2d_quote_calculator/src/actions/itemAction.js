@@ -14,6 +14,7 @@ import {
 export const getQuotes = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/quotes";
 
+
   axios.get(url).then((res) =>
     dispatch({
       type: GET_QUOTES,
@@ -34,6 +35,7 @@ export const updateNoteQuote = (item) => (dispatch) => {
 
 export const createQuote = (item) => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/quotes";
+
   axios.post(url, item).then((res) =>
     dispatch({
       type: CREATE_QUOTE,
@@ -87,6 +89,7 @@ export const getProtPricing = () => (dispatch) => {
 
 export const updateProtPrice = (item) => (dispatch) => {
   let url = "https://" + window.location.host.toString() +  "/" + process.env.REAT_APP_API_KEY + `/pricing/updateProt/${item.id}`;
+
   axios.post(url, item).then((res) =>
     dispatch({
       type: UPDATE_PROT,
@@ -97,6 +100,7 @@ export const updateProtPrice = (item) => (dispatch) => {
 
 export const getPolishPricing = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() +  "/" + process.env.REAT_APP_API_KEY + "/pricing/polishPricing";
+
 
   axios.get(url).then((res) => {
     dispatch({
