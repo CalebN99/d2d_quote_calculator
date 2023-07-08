@@ -301,6 +301,7 @@ class Admin extends Component {
                           <th scope="col">Name</th>
                           <th scope="col">Email</th>
                           <th scope="col">Number</th>
+                          <th scope="col">Contact</th>
                           <th scope="col">Email List</th>
                           <th scope="col">Car Size</th>
                           <th scope="col">Waterspots</th>
@@ -340,11 +341,15 @@ class Admin extends Component {
                               <td>{quote.name}</td>
                               <td>{quote.email}</td>
                               <td>{quote.number}</td>
+                              <td> {this.autoCapitalize(
+                                  quote.contactMe.toString()
+                                )}</td>
                               <td className = "eListTD">
                                 {this.autoCapitalize(
                                   quote.emailList.toString()
                                 )}
                               </td>
+
                               <td>{quote.carSize}</td>
                               <td>
                                 {this.autoCapitalize(

@@ -14,7 +14,6 @@ import {
 export const getQuotes = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/quotes";
 
-  console.log("Getting Quotes: " + url);
   axios.get(url).then((res) =>
     dispatch({
       type: GET_QUOTES,

@@ -50,8 +50,6 @@ class Calculator extends Component {
       notes: ""
     };
 
-    console.log(document.referrer);
-
     this.props.createQuote(quote);
     this.loadQuote();
     event.preventDefault();
