@@ -34,6 +34,22 @@ router.delete("/:id/delete", (req, res) => {
 });
 
 /**
+ * Patch
+ * Updates Quote ( Specifically updating notes)
+ */
+
+router.patch("/:id/update", (req, res) => {
+  Quote.findByIdAndUpdate(req.params.id, req.body, {new: true}).then((quote) => {
+    if (!quote) {
+      return res.statusCode(404).send();
+    }
+    res.send(quote)
+  }).catch((error) => {
+    res.statusCode(500).send(error);
+  })
+})
+
+/**
  * Post
  * Creates a Quote using nested methods
  */
@@ -140,6 +156,9 @@ router.post("/", (req, res) => {
         protection: req.body.protection,
         priceEstimation: price,
         emailList: req.body.emailList,
+        referer: req.body.referer,
+        notes: req.body.notes,
+        contactMe: req.body.contactMe
       });
 
       newQuote.save().then((item) => res.json(item));

@@ -14,6 +14,7 @@ import {
 export const getQuotes = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/quotes";
 
+  console.log("Getting Quotes: " + url);
   axios.get(url).then((res) =>
     dispatch({
       type: GET_QUOTES,
@@ -22,9 +23,18 @@ export const getQuotes = () => (dispatch) => {
   );
 };
 
+export const updateNoteQuote = (item) => (dispatch) => {
+  let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + `/quotes/${item.id}/update`;
+  axios.patch(url, item).then((res) =>
+    dispatch({
+      type: CREATE_QUOTE,
+      payload: res.data,
+    })
+  );
+};
+
 export const createQuote = (item) => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY +"/quotes";
-
   axios.post(url, item).then((res) =>
     dispatch({
       type: CREATE_QUOTE,
@@ -45,7 +55,6 @@ export const deleteQuote = (id) => (dispatch) => {
 
 export const login = (item) => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REACT_APP_API_KEY+ "/accounts/login";
-
 
   axios.post(url, item).then((res) =>
     dispatch({
@@ -68,6 +77,7 @@ export const createAccount = (item) => (dispatch) => {
 
 export const getProtPricing = () => (dispatch) => {
   let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/pricing/protPricing";
+
   axios.get(url).then((res) =>
     dispatch({
       type: GET_PROT_PRICE,

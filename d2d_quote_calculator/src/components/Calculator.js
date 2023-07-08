@@ -29,6 +29,7 @@ class Calculator extends Component {
       email: "",
       number: 0,
       emailList: false,
+      contactMe: false,
     };
   }
 
@@ -44,7 +45,12 @@ class Calculator extends Component {
       scratches: this.state.scratches,
       protection: this.state.protection,
       emailList: this.state.emailList,
+      contactMe: this.state.contactMe,
+      referer: document.referrer,
+      notes: ""
     };
+
+    console.log(document.referrer);
 
     this.props.createQuote(quote);
     this.loadQuote();
@@ -225,6 +231,20 @@ class Calculator extends Component {
                     required
                     onChange={this.handleTextChange()}
                   />
+                </div>
+                <div className="form-group">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="contactMe"
+                      name="contactMe"
+                      onChange={this.handleChange()}
+                    />
+                    <label class="form-check-label" for="contactMe">
+                      Would you like to be contacted to discuss lesser options and/or what's included in this quote?
+                    </label>
+                  </div>
                 </div>
                 <div className="form-group">
                   <div className="form-check">

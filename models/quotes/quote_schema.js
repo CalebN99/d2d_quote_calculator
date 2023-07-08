@@ -12,6 +12,9 @@ const Quote = mongoose.Schema({
     priceEstimation: {type: Number, requird: true},
     emailList: {type: Boolean, required: true, default: false},
     dateCreated: {type: Date, default: Date.now}, 
+    notes: {type: String, required: false, default: ""},
+    referer: {type: String, required: true},
+    contactMe: {type: Boolean, required: true}
 })
 
 

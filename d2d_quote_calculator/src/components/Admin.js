@@ -9,7 +9,8 @@ import {
   updateProtPrice,
   getPolishPricing,
   updatePolishPricing,
-  createAccount
+  createAccount,
+  updateNoteQuote
 } from "../actions/itemAction";
 import store from "../store";
 import logo from "../assets/images/logo.webp";
@@ -39,9 +40,13 @@ class Admin extends Component {
       twoStep: 0,
       id: "",
       modal: false,
+      noteModal: false,
       idDelete: "",
       csv: "",
       reload: 1,
+      noteName: "",
+      notes: "",
+      noteID: "",
     };
   }
 
@@ -52,6 +57,20 @@ class Admin extends Component {
 
   closeModal = () => {
     this.setState({ modal: false });
+  };
+
+  openNoteModal = (name, notes, id) => (event) => {
+    this.setState({ noteModal: true });
+    this.setState({ noteName: name });
+    this.setState({ notes: notes });
+    this.setState({ noteID: id});
+
+
+
+  };
+
+  closeNoteModal= () => {
+    this.setState({ noteModal: false });
   };
 
   updateProtPrice = () => (event) => {
@@ -113,9 +132,27 @@ class Admin extends Component {
     this.props.state.quotes = this.props.state.quotes.filter(
       (e) => e._id !== id
     );
+
+ 
     event.preventDefault();
     this.closeModal();
   };
+
+  quoteNotesUpdate = (event) => {
+    let patch = {
+      id: this.state.noteID,
+      notes: this.state.notes
+    };
+
+    this.props.updateNoteQuote(patch)
+    this.props.state.quotes = this.props.state.quotes.map((quote) => {
+      if (quote._id === this.state.noteID) {
+        quote.notes = this.state.notes;
+      }
+      return quote
+    })
+    toast.success("Update client notes");
+  }
 
   handleSubmit = (event) => {
     const account = {
@@ -170,6 +207,7 @@ class Admin extends Component {
         "swirls",
         "waterspots",
         "priceEstimation",
+        "referer"
       ],
       ...this.props.state.quotes.map((item) => [
         item.dateCreated.substring(0, 10),
@@ -183,6 +221,7 @@ class Admin extends Component {
         item.swirls,
         item.waterspots,
         item.priceEstimation,
+        item.referer
       ]),
     ];
 
@@ -262,13 +301,17 @@ class Admin extends Component {
                           <th scope="col">Name</th>
                           <th scope="col">Email</th>
                           <th scope="col">Number</th>
-                          <th scope="col">E List</th>
+                          <th scope="col">Email List</th>
                           <th scope="col">Car Size</th>
                           <th scope="col">Waterspots</th>
                           <th scope="col">Swirls</th>
                           <th scope="col">Scratches</th>
                           <th scope="col">Protection</th>
                           <th scope="col">Estimate</th>
+                          <th scope="col">Referer</th>
+
+                          <th scope="col"></th>
+
                         </tr>
                       </thead>
 
@@ -297,7 +340,7 @@ class Admin extends Component {
                               <td>{quote.name}</td>
                               <td>{quote.email}</td>
                               <td>{quote.number}</td>
-                              <td>
+                              <td className = "eListTD">
                                 {this.autoCapitalize(
                                   quote.emailList.toString()
                                 )}
@@ -318,11 +361,18 @@ class Admin extends Component {
                               </td>
                               <td>{quote.protection.join(", ")}</td>
                               <td>${quote.priceEstimation}</td>
+                              <td>{quote.referer}</td>
+                              <td>
+                               <button class="btn btn-primary" onClick={this.openNoteModal(quote.name, quote.notes, quote._id)}>
+                                  Notes
+                               </button>
+                              </td>
                             </tr>
                           ))}
                         </tbody>
                       )}
                     </table>
+                    <Toaster />
                   </TabPanel>
                   {this.props.state.polishPricing.map((polish) =>  
                   
@@ -507,6 +557,33 @@ class Admin extends Component {
             )}
           </div>
           <Modal
+            show={this.state.noteModal}
+            onHide={this.closeNoteModal}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Body>
+              <div className="modal_notes">
+                <h1>Notes: {this.state.noteName}</h1>
+                <textarea id="notes" name="notes" className="notes" placeholder="Store client/lead notes here..." 
+                  value={this.state.notes} onChange={this.handleTextChange()}>
+                </textarea>
+                <div className="button_container">
+                  <button
+                    className="btn btn-success"
+                    onClick={this.quoteNotesUpdate}
+                  >
+                    Save
+                  </button>
+                  <button onClick={this.closeNoteModal} className="btn btn-primary">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+
+          <Modal
             show={this.state.modal}
             onHide={this.closeModal}
             backdrop="static"
@@ -547,5 +624,6 @@ export default connect(mapStateToProps, {
   updateProtPrice,
   getPolishPricing,
   updatePolishPricing,
-  createAccount
+  createAccount,
+  updateNoteQuote
 })(Admin);
