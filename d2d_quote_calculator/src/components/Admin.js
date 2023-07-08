@@ -310,7 +310,6 @@ class Admin extends Component {
                           <th scope="col">Protection</th>
                           <th scope="col">Estimate</th>
                           <th scope="col">Referer</th>
-
                           <th scope="col"></th>
 
                         </tr>
