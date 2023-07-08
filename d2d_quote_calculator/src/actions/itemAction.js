@@ -33,7 +33,7 @@ export const updateNoteQuote = (item) => (dispatch) => {
 };
 
 export const createQuote = (item) => (dispatch) => {
-  let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY +"/quotes";
+  let url = "https://" + window.location.host.toString() + "/" + process.env.REAT_APP_API_KEY + "/quotes";
   axios.post(url, item).then((res) =>
     dispatch({
       type: CREATE_QUOTE,
